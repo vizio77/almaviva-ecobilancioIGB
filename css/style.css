@@ -1,0 +1,49 @@
+/* Enter your custom styles here */
+
+.marginRight {
+    margin-right: 8px;
+}
+
+.headerColumn {
+    text-align: center !important;
+    width: fit-content;
+    block-size: fit-content;
+}
+
+.sapFDynamicPageContentFitContainer,
+.sapFDynamicPageContent {
+    position: unset !important;
+    padding: 0px !important;
+}
+
+.titleLabel {
+    /* font-style: bold; */
+    margin-top: 1rem;
+    font-size: 16px;
+}
+
+.fullTextITB .sapMITBHorizontalWrapper {
+    max-width: 10rem;
+}
+
+.fullTextITB .sapMITBHorizontal.sapMITBFilter>.sapMITBHorizontalWrapper>.sapMITBText {
+    max-width: 10rem;
+}
+
+.ziconText .sapMITBFilter .sapMITBText {
+    width: 7rem !important;
+}
+
+.zicon .sapMITBTab {
+    width: 7rem !important;
+    font-size: 1rem !important;
+}
+
+.boldCss {
+    font-weight: bold !important;
+    color: #32363B;
+}
+
+/* .sapUiTableColRsz {
+    box-sizing: content-box !important;
+} */

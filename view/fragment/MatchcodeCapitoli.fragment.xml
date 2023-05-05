@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:uxap="sap.uxap">
+   <Dialog id="idTablePg" title="{i18n>thCap}" contentWidth="100%" contentHeight="80%" afterClose="afterDialogClose">
+      <content>
+         <l:VerticalLayout width="100%">
+            <l:content>
+               <SearchField width="100%" search="onPressSearchCapitoli($event, 'idTableElencoCap')" />
+               <Table id="idTableElencoCap" inset="false" items="{modelElencoCap>/}" mode="SingleSelectMaster" selectionChange="onPressItemElencoCap" sticky="ColumnHeaders,HeaderToolbar,InfoToolbar">
+                  <columns>
+                     <Column width="auto">
+                        <Text text="{i18n>thAmmin}" class="boldCss" />
+                     </Column>
+                     <Column width="auto">
+                        <Text text="{i18n>thDescrAmmin}" class="boldCss" />
+                     </Column>
+                     <Column width="auto">
+                        <Text text="{i18n>codCap}" class="boldCss" />
+                     </Column>
+                     <Column width="auto">
+                        <Text text="{i18n>descrCapitolo2}" class="boldCss" />
+                     </Column>
+                  </columns>
+                  <items>
+                     <ColumnListItem vAlign="Middle">
+                        <cells>
+                           <Text text="{modelElencoCap>Prctr}" />
+                           <Text text="{modelElencoCap>DescPrctr}"/>
+                           <Text text="{modelElencoCap>Capitolo}" />
+                           <Text text="{modelElencoCap>DescEstesaCapitolo}" />
+                        </cells>
+                     </ColumnListItem>
+                  </items>
+               </Table>
+            </l:content>
+         </l:VerticalLayout>
+      </content>
+      <endButton>
+         <Button press="onCloseElencoCap" type="Emphasized" text="{i18n>chiudi}" />
+      </endButton>
+   </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,663 @@
+<mvc:View
+    controllerName="zsap.com.r3.cobi.s4.ecobilancioigb.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:ui="sap.ui.table"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:zcontrol="zsap.com.r3.cobi.s4.custposfin.z_s4_zposfin.controls"
+   
+    xmlns:zcontrollink="zsap.com.r3.cobi.s4.custposfin.z_s4_zposfinlink.controls"
+> <!-- xmlns:zcontrolAdatta="zsap.com.r3.cobi.s4.custadattafiltri.spese.adattafiltrispese.controls" -->
+    <f:DynamicPage>
+        <f:header>
+            <f:DynamicPageHeader>
+                <f:content>
+                    <fb:Filterbar id="idBar" showClearOnFB="true" clear="onClear" search="onSearch" showGoOnFB="true" showFilterConfiguration="true" useToolbar="false">
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem groupName="G1" name="A" label="{i18n>filtroSottostrumento}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idSottostrumento" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="B" label="{i18n>filtroAmministrazione}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idAmministrazione" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="C" label="{i18n>filtroPosfin}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <zcontrol:InputPosizioneFinanziaria id="idPosFin" fase="{modelFoto>/FASE}" reale="{modelFoto>/REALE_RIF}" anno="{modelFoto>/ANNO}" spesa="X" maxSuggestionWidth="60%" versione="D" change="onChangeT($event, 'posFin')" liveChange="onSelectPosFin" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="D" label="{i18n>filtroSpeseFunzionamento}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <CheckBox id="idSpeseFunzionamento" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="E" label="{i18n>filtroSpeseInterne}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idSpeseInterne" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="F" label="{i18n>filtroNuovaIstituzione}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <CheckBox id="idNuovaIstituzione" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="G" label="{i18n>filtroNoCepacruma}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <CheckBox id="idNoCepacruma" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="H" label="{i18n>filtroEsito}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idEsito" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="I" label="{i18n>filtroMultiambito}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idMultiambito" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="J" label="{i18n>filtroCepacruma}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idCepacruma" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="K" label="{i18n>filtroSpeseDirette}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idSpeseDirette" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="L" label="{i18n>filtroSpeseTrasferte}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idSpeseTrasferte" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="M" label="{i18n>filtroSpeseCorrenti}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idSpeseCorrenti" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem groupName="G1" name="N" label="{i18n>filtroSpeseContoCap}" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="idSpeseContoCap" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:Filterbar>
+                    <HBox id="idCriteriConfronto">
+                        <items>
+                            <CheckBox id="idCdr" text="{i18n>filtroCdr}" />
+                            <CheckBox id="idMissione" text="{i18n>filtroMissione}" />
+                            <CheckBox id="idProgramma" text="{i18n>filtroProgramma}" />
+                            <CheckBox id="idAzione" text="{i18n>filtroAzione}" />
+                            <CheckBox id="idDenomCap" text="{i18n>filtroDenomCap}" />
+                            <CheckBox id="idDenomPg" text="{i18n>filtroDenomPg}" />
+                        </items>
+                    </HBox>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content class="unsetPosition">
+            <IconTabBar id="idTabBar" expandable="false" select="onTabBarSelect" selectedKey="keyAnalisi" visible="true" expanded="true">
+                <items>
+                    <IconTabFilter key="keyAnalisi" text="{i18n>tabAnalisi}" icon="sap-icon://document" />
+                    <IconTabFilter key="keyEcobilancio" text="{i18n>tabEcobilancio}" icon="sap-icon://document" />
+                </items>
+                <content>
+                    <HBox id="boxButtons" justifyContent="End">
+                        <Button id="buttonListaRidotta" text="{i18n>buttonListaRidotta}" press="onPressListaRidotta" type="Emphasized" visible="{modelTableExpansion>/isExpanded}" icon="sap-icon://zoom-out" class="marginRight" />
+                        <Button id="buttonListaEstesa" text="{i18n>buttonListaEstesa}" press="onPressListaEstesa" type="Emphasized" visible="{modelTableExpansion>/isCompressed}" icon="sap-icon://zoom-in" class="marginRight" />
+                        <Button text="{i18n>buttonSalva}" id="idButtonSalva" type="Emphasized" press="onSalva" class="marginRight" />
+                        <Button text="{i18n>buttonExport}" type="Emphasized" icon="sap-icon://excel-attachment" press="onPressExportHome" />
+                    </HBox>
+                    <!-- <ui:Table id="tableAnalisi" fixedColumnCount="2" enableColumnReordering="false" enableSelectAll="false" >
+                        <ui:columns>
+                            <ui:Column width="8rem" >
+                                <Label text="{i18n>thAmmin}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="11rem">
+                                <Label text="{i18n>thPosfin}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="2">
+                                <ui:multiLabels>
+                                    <Label text="{i18n>thCdr}" width="100%" class="headerColumn" />
+                                    <Label text="{i18n>thAnno1}" width="4rem" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="2">
+                                <ui:multiLabels>
+                                    <Label />
+                                    <Label text="{i18n>thAnno2}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="2">
+                                <ui:multiLabels>
+                                    <Label text="{i18n>thMissione}" width="100%" class="headerColumn" />
+                                    <Label text="{i18n>thAnno1}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="2">
+                                <ui:multiLabels>
+                                    <Label />
+                                    <Label text="{i18n>thAnno2}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="2">
+                                <ui:multiLabels>
+                                    <Label text="{i18n>thProgramma}" width="100%" class="headerColumn" />
+                                    <Label text="{i18n>thAnno1}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="2">
+                                <ui:multiLabels>
+                                    <Label />
+                                    <Label text="{i18n>thAnno2}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="2">
+                                <ui:multiLabels>
+                                    <Label text="{i18n>thAzione}" width="100%" class="headerColumn" />
+                                    <Label text="{i18n>thAnno1}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="2">
+                                <ui:multiLabels>
+                                    <Label />
+                                    <Label text="{i18n>thAnno2}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="3">
+                                <ui:multiLabels>
+                                    <Label text="{i18n>thDenomCap}" width="100%" class="headerColumn" />
+                                    <Label text="{i18n>thCap}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="3">
+                                <ui:multiLabels>
+                                    <Label />
+                                    <Label text="{i18n>thAnno1}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="3">
+                                <ui:multiLabels>
+                                    <Label />
+                                    <Label text="{i18n>thAnno2}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="6rem" headerSpan="3">
+                                <ui:multiLabels>
+                                    <Label text="{i18n>thDenomPg}" width="100%" class="headerColumn" />
+                                    <Label text="{i18n>thPg}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="3">
+                                <ui:multiLabels>
+                                    <Label />
+                                    <Label text="{i18n>thAnno1}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" headerSpan="3">
+                                <ui:multiLabels>
+                                    <Label />
+                                    <Label text="{i18n>thAnno2}" />
+                                </ui:multiLabels>
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thTitolo}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCat}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCe2}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCe3}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thStato}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thSpeseInt}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="8rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thMultiambito}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="8rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCapAggr}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="12rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thSpeseDirTra}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thEsito}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="6rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thEsitoPerc}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc1}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc2}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc3}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc4}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc5}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc6}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc7}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc8}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc9}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc10}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc11}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc12}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc13}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc14}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc15}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thCc16}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thSpeseInt}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem" visible="{modelTableExpansion>/isExpanded}">
+                                <Label text="{i18n>thNota}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                        </ui:columns>
+                    </ui:Table> -->
+                    <Table id="tableAnalisi" >
+                        <columns>
+                            <Column >
+                            </Column>
+                        </columns>
+                    </Table>
+                    <ui:Table id="tableEcobilancio" selectionMode="MultiToggle" showNoData="true" enableColumnFreeze="true" showColumnVisibilityMenu="false" enableColumnReordering="false" enableSelectAll="false" visible="false">
+                        <ui:columns>
+                            <ui:Column width="8rem">
+                                <Label text="{i18n>thAmmin}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="12rem">
+                                <Label text="{i18n>thPosfin}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="4rem">
+                                <Label text="{i18n>thCdr}" width="100%" class="headerColumn" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="6rem">
+                                <Label text="{i18n>thMissione}" width="100%" class="headerColumn" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="8rem">
+                                <Label text="{i18n>thProgramma}" width="100%" class="headerColumn" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem">
+                                <Label text="{i18n>thAzione}" width="100%" class="headerColumn" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem">
+                                <Label text="{i18n>thTitolo}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCat}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCe2}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCe3}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="12rem">
+                                <Label text="{i18n>thDenomCap}" width="100%" class="headerColumn" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="9rem">
+                                <Label text="{i18n>thDenomPg}" width="100%" class="headerColumn" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem">
+                                <Label text="{i18n>thStato}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="7rem">
+                                <Label text="{i18n>thSpeseInt}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="8rem">
+                                <Label text="{i18n>thMultiambito}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="8rem">
+                                <Label text="{i18n>thCapAggr}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="12rem">
+                                <Label text="{i18n>thSpeseDirTra}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem">
+                                <Label text="{i18n>thEsito}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="6rem">
+                                <Label text="{i18n>thEsitoPerc}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc1}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc2}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc3}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc4}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc5}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc6}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc7}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc8}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc9}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc10}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc11}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc12}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc13}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc14}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc15}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3rem">
+                                <Label text="{i18n>thCc16}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5rem">
+                                <Label text="{i18n>thNota}" />
+                                <ui:template>
+                                    <Text text="zulul" />
+                                </ui:template>
+                            </ui:Column>
+                        </ui:columns>
+                    </ui:Table>
+                </content>
+            </IconTabBar>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="myPopover"
+		contentWidth="20%"
+		contentHeight="17.5%"
+		title="{i18n>Note}"
+placement="Top"
+		>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+				press="onClosePopOverNote"
+				type="Emphasized"
+					id="buttonPop"
+					text="{i18n>aggiungi}"
+					 />
+			</OverflowToolbar>
+		</footer>
+		<TextArea id="notePop"
+			rows="8"
+			height="80%"
+			width="100%"
+			value="{notaModel>/Nota}"
+			>
+            
+        </TextArea>
+	</Popover>
+</core:FragmentDefinition>

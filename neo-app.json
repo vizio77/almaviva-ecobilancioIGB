@@ -1,0 +1,104 @@
+{
+  "welcomeFile": "/index.html",
+  "routes": [
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.77.2"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.77.2"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "S4S",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "S4HANA S4S RGS sviluppo"
+    },
+    {
+      "path": "/sap/bc/ui5_ui5",
+      "target": {
+        "type": "destination",
+        "name": "S4S",
+        "entryPath": "/sap/bc/ui5_ui5"
+      },
+      "description": "S4HANA S4S RGS sviluppo"
+    },
+    {
+      "path": "/resources/zsap/com/r3/cobi/s4/custposfin/z_s4_ zposfina",
+      "target": {
+        "type": "destination",
+        "name": "S2S",
+        "entryPath": "/sap/bc/ui5_ui5/sap/z_s4_zposfina/src/custposfin/z_s4_ zposfina",
+        "preferLocal": true
+      },
+      "description": "zsap/com/r3/cobi/s4/custposfin/zposfina Reuse Library"
+    },
+    {
+      "path": "/resources/zsap/com/r3/cobi/s4/custadattafiltri/spese/adattafiltrispese",
+      "target": {
+        "type": "destination",
+        "name": "S2S",
+        "entryPath": "/sap/bc/ui5_ui5/sap/z_s4_adfiltris/src/adattafiltrispese",
+        "preferLocal": true
+      },
+      "description": "zsap/com/r3/cobi/s4/custadattafiltri/spese/adattafiltrispese Reuse Library"
+    },
+    {
+      "path": "/resources/zsap/com/r3/cobi/s4/custposfin/z_s4_zposflink ",
+      "target": {
+        "type": "destination",
+        "name": "S2S",
+        "entryPath": "/sap/bc/ui5_ui5/sap/z_s4_zposfina/src/custposfin/z_s4_zposflink",
+        "preferLocal": true
+      },
+      "description": "zsap/com/r3/cobi/s4/custposfin/z_s4_zposflink Reuse Library"
+    },
+    {
+      "path": "/resources/zsap/com/r3/cobi/s4/custposfin/z_s4_zposfin",
+      "target": {
+        "type": "destination",
+        "name": "S4S",
+        "entryPath": "/sap/bc/ui5_ui5/sap/z_s4_zposfina/src/custposfin/z_s4_zposfin",
+        "preferLocal": true
+      },
+      "description": "zsap/com/r3/cobi/s4/custposfin/z_s4_zposfin Reuse Library"
+    },
+    {
+      "path": "/resources/zsap/com/r3/cobi/s4/custposfin/z_s4_zposfinlink",
+      "target": {
+        "type": "destination",
+        "name": "S4S",
+        "entryPath": "/sap/bc/ui5_ui5/sap/z_s4_zposflink/src/custposfin/z_s4_zposfinlink",
+        "preferLocal": true
+      },
+      "description": "zsap/com/r3/cobi/s4/custposfin/z_s4_zposfinlink Reuse Library"
+    },
+    {
+      "path": "/resources/z_s4_coniauth/coniauth",
+      "target": {
+        "type": "destination",
+        "name": "S4S",
+        "entryPath": "/sap/bc/ui5_ui5/sap/z_coniaut/src/z_s4_coniauth/coniauth",
+        "preferLocal": true
+      },
+      "description": "z_s4_coniauth/coniauth Reuse Library"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

@@ -1,0 +1,187 @@
+{
+    "resources": [
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "view/Home.view.xml"
+        },
+        {
+            "name": "view/fragment/Sottostrumento.fragment.xml"
+        },
+        {
+            "name": "view/fragment/MatchcodeCapitoli.fragment.xml"
+        },
+        {
+            "name": "view/fragment/PopoverNote.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HelpValueSottostrumento.fragment.xml"
+        },
+        {
+            "name": "view/fragment/PopOverSottostrumento.fragment.xml"
+        },
+        {
+            "name": "view/fragment/TablePosizioneFinanziaria.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVAmmin.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/ElencoPosFinUpdate.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVTitolo.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/ElencoPosFinUpdate2.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVCapitolo.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVCategoria.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVAzione.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/AddElenco.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVCdr.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVCe3.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVCofog.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVCe2.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVCodiceStandard.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/PopOverPosFinIRAP.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/AddCOFOG.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVMissione.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/PopOverStruttAmmCentrale.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVCodiceElenco.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVPg.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVPgChoice.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/PopOverStruttAmmCentraleVert.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVRagioneria.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVProgramma.fragment.xml"
+        },
+        {
+            "name": "view/fragment/HVPosFin/HVMac.fragment.xml"
+        },
+        {
+            "name": "view/fragment/PosFinHelp.fragment.xml"
+        },
+        {
+            "name": "view/fragment/PopoverInfoColonna.fragment.xml"
+        },
+        {
+            "name": "view/fragment/BusyDialog.fragment.xml"
+        },
+        {
+            "name": "view/Sottostrumento.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "controller/util/formatter.js"
+        },
+        {
+            "name": "controller/Sottostrumento.controller.js"
+        },
+        {
+            "name": "controller/Home.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "webapp/view/Home.view.xml"
+        },
+        {
+            "name": "OLD_Component-preload.js"
+        },
+        {
+            "name": "util/formatter.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": ".vscode/settings.json"
+        },
+        {
+            "name": "localService/ZSS4_CO_GEST_TIPOLOGICHE_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/metadata2.xml"
+        },
+        {
+            "name": "localService/ZSS4_CO_HELP_POSFIN_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "css/style.css"
+        }
+    ]
+}

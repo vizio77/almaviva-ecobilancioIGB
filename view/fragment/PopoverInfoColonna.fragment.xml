@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="myPopover"
+		contentWidth="25%"
+		contentHeight="17%"
+		title="{i18n>Info}"
+		placement="Top"
+		>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+				press="onCloseInfoCol"
+				type="Emphasized"
+					id="buttonPopCol"
+					text="{i18n>chiudi}"
+					 />
+			</OverflowToolbar>
+		</footer>
+		<TextArea id="notePop"
+		rows="5"
+		editable="false"
+		height="80%"
+		width="100%"
+           value="{infoModel>/Message}"
+        >
+            
+        </TextArea>
+	</Popover>
+</core:FragmentDefinition>

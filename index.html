@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+
+		<title>zsap.com.r3.cobi.s4.ecobilancioigb</title>
+
+		<script id="sap-ui-bootstrap"
+			src="/../resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-resourceroots='{"zsap.com.r3.cobi.s4.ecobilancioigb": ""}'>
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<script>
+		 if(window.location.hostname==='localhost'){
+	  	jQuery.sap.registerModulePath("zsap.com.r3.cobi.s4.custposfin.z_s4_zposfin",
+       	"../../sap/bc/ui5_ui5/sap/z_s4_zposfin/src/custposfin/z_s4_zposfin");
+       	jQuery.sap.registerModulePath("zsap.com.r3.cobi.s4.custposfin.z_s4_zposfinlink",
+       	"../../sap/bc/ui5_ui5/sap/z_s4_zpflink/src/custposfin/z_s4_zposfinlink");
+		}else{
+	    jQuery.sap.registerModulePath("zsap.com.r3.cobi.s4.custposfin.z_s4_zposfin",
+	    "../../sap/z_s4_zposfin/src/custposfin/z_s4_zposfin");
+	     jQuery.sap.registerModulePath("zsap.com.r3.cobi.s4.custposfin.z_s4_zposfinlink",
+	    "../../sap/z_s4_zpflink/src/custposfin/z_s4_zposfinlink");
+		}
+			sap.ui.getCore().attachInit(function() {
+				new sap.m.Shell({
+					appWidthLimited: false,
+					app: new sap.ui.core.ComponentContainer({
+						height : "100%",
+						name : "zsap.com.r3.cobi.s4.ecobilancioigb"
+					})
+				}).placeAt("content");
+			});
+		</script>
+	</head>
+
+	<body class="sapUiBody" id="content">
+	</body>
+
+</html>

@@ -1,0 +1,1635 @@
+<mvc:View
+	controllerName="zsap.com.r3.cobi.s4.ecobilancioigb.controller.Home"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:zcontrol="zsap.com.r3.cobi.s4.custposfin.z_s4_zposfin.controls"
+	
+	xmlns:zcontrollink="zsap.com.r3.cobi.s4.custposfin.z_s4_zposfinlink.controls"
+><!-- xmlns:zcontrolAdatta="zsap.com.r3.cobi.s4.custadattafiltri.spese.adattafiltrispese.controls" -->
+	<f:DynamicPage showFooter="true" preserveHeaderStateOnScroll="true" >
+		<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<layout:HorizontalLayout>
+							<Label text="{i18n>Esercizio}:" class="boldCss"/>
+							<Text text="{modelPosFin>/esercizio}" class="sapUiTinyMarginBeginEnd"/>
+							<Label text="{i18n>Processo}:" class="boldCss"/>
+							<Text text="{globalModel>/DDTEXT}" class="sapUiTinyMarginBeginEnd"/>
+							<!-- <Label text="{i18n>Fase}:" class="boldCss" />
+							<Text text="DLB" class="sapUiTinyMarginBeginEnd" /> -->
+							<Label text="{i18n>MacroFase}:" class="boldCss"/>
+							<Text text="{globalModel>/STAT_FASE}" class="sapUiTinyMarginBeginEnd"/>
+							<Label text="{i18n>Sottostrumento}:" class="boldCss"/>
+							<Link text="{modelPosFin>/Sottostrumento}" press="onExpandPopOverSottostrumento" class="sapUiTinyMarginBeginEnd"/>
+
+						</layout:HorizontalLayout>
+					</f:heading>
+				</f:DynamicPageTitle>
+			</f:title>
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+				<!-- <FlexBox > 
+						<items>
+							<Text text="{i18n>Esercizio}:" class="boldCss"/>
+							<Text text="{modelPosFin>/esercizio}" class="sapUiTinyMarginBeginEnd"/>
+							<Text text="{i18n>Processo}:" class="boldCss"/>
+							<Text text="{globalModel>/DDTEXT}" class="sapUiTinyMarginBeginEnd"/>
+							<Text text="{i18n>Fase}:" class="boldCss" />
+							<Text text="DLB" class="sapUiTinyMarginBeginEnd" />
+							<Text text="{i18n>MacroFase}:" class="boldCss"/>
+							<Text text="{globalModel>/STAT_FASE}" class="sapUiTinyMarginBeginEnd"/>
+							<Text text="{i18n>Sottostrumento}:" class="boldCss"/>
+							<Link text="{modelPosFin>/Sottostrumento}" press="onExpandPopOverSottostrumento" class="sapUiTinyMarginBeginEnd"/>
+						</items>
+					</FlexBox>  -->
+					<fb:Filterbar
+						id="idBar"
+						showClearOnFB="true"
+						clear="onClear"
+						search="onSearch"
+						showGoOnFB="true"
+						showFilterConfiguration="true"
+						useToolbar="false"
+					>
+						<fb:filterGroupItems>
+							 <fb:FilterGroupItem
+								groupName="G1"
+								name="B"
+								label="{i18n>filtroAmministrazione}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<!-- <Input editable="false" value="A020" id="AmmFA"/> -->
+									<Input showValueHelp="true" maxLength="4" valueHelpRequest="onMatchCodePress" id="AmmFA"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="C"
+								label="{i18n>filtroCapitolo}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<Input id="idCapitolo" maxLength="4" showValueHelp="true" valueHelpRequest="handleValueHelpTable"/>
+									<!-- <Input id="idCapitolo" value="{modelPosFin>/posFinHelp/Capitolo}" width="70%" showValueHelp="true" valueHelpRequest="onHVAdattaFiltri($event, 'capitoloHomeFilter')" valueHelpOnly="true">
+										<customData>
+											<core:CustomData key="posFinHelp" value="HVCapitolo" writeToDom="false"/>
+										</customData>
+									</Input> -->
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="D"
+								label="{i18n>filtroPosfin}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<!-- <zcontrol:InputPosizioneFinanziaria
+										id="idPosFin"
+										fase="{modelFoto>/FASE}"
+										reale="{modelFoto>/REALE_RIF}"
+										anno="{modelFoto>/ANNO}"
+										spesa="X"
+										maxSuggestionWidth="60%"
+										versione="D"
+										change="onChangeT($event, 'posFin')"
+										liveChange="onSelectPosFin"
+									/> -->
+									<!-- <zcontrol:InputPosizioneFinanziaria id="idPosFin" fase="DLB" reale="R" anno="2024" fikrs="S001" spesa="X" maxSuggestionWidth="60%"
+										MODEL_FILTER_NAME="modelAdattaFiltri" versione="D"/> -->
+									<!-- <Input id="idPosFin" value="{modelPosFin>/posFinHelp/posFin/Fipex}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onPosFin"/> -->
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="E"
+								label="{i18n>filtroSpeseFunzionamento}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<CheckBox id="idSpeseFunzionamento"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="F"
+								label="{i18n>filtroSpeseInterne}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<Select
+									    id="idSpeseInterne"
+										items="{
+											path: 'modelSpeseInt>/Spese',
+											templateShareable: 'false'
+										}"
+										change=""
+									>
+										<items>
+											<core:Item
+												key="{modelSpeseInt>id}"
+												text="{modelSpeseInt>name}"
+											/>
+										</items>
+									</Select>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="G"
+								label="{i18n>filtroNuovaIstituzione}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<CheckBox id="idNuovaIstituzione"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="H"
+								label="{i18n>filtroNoCepacruma}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<CheckBox id="idNoCepacruma"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="I"
+								label="{i18n>filtroEsito}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<Select
+										id="idEsito"
+										items="{
+											path: 'modelEsito>/Esiti',
+											templateShareable: 'false'
+										}"
+									>
+										<items>
+											<core:Item
+												key="{modelEsito>id}"
+												text="{modelEsito>name}"
+											/>
+										</items>
+									</Select>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="J"
+								label="{i18n>filtroMultiambito}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<!-- <Input id="idMultiambito"/> -->
+									<Select
+									    id="idMultiambito"
+										items="{
+											path: 'modelMultiambito>/Multiambito',
+											templateShareable: 'false'
+										}"
+										change=""
+									>
+										<items>
+											<core:Item
+												key="{modelMultiambito>id}"
+												text="{modelMultiambito>name}"
+											/>
+										</items>
+									</Select>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="K"
+								label="{i18n>filtroCepacruma}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<Input id="idCepacruma" showValueHelp="true" valueHelpRequest="onMatchCodePress"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="L"
+								label="{i18n>filtroSpeseDirette}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<CheckBox id="idSpeseDirette"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="M"
+								label="{i18n>filtroSpeseTrasf}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<CheckBox id="idSpeseTrasf"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="N"
+								label="{i18n>filtroSpeseCorrenti}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<CheckBox id="idSpeseCorrenti"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="O"
+								label="{i18n>filtroSpeseContoCap}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<CheckBox id="idSpeseContoCap"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem
+								groupName="G1"
+								name="P"
+								label="{i18n>filtroRicercaDescr}"
+								visibleInFilterBar="true"
+							>
+								<fb:control>
+									<Input id="idRicercaDescr"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:Filterbar>
+					<Text text="{i18n>titleCriteriConf}" class="titleLabel" />
+					<Vbox>
+
+						<HBox>
+							<items>
+								<Label labelFor="filtroAndOr" text="Logica condizione:" class="sapUiTinyMarginTop"/>
+								<RadioButtonGroup id="filtroAndOr" columns="2">
+									<RadioButton text="And"></RadioButton>
+									<RadioButton text="Or"></RadioButton>
+							</RadioButtonGroup>
+						</items>
+						
+					</HBox>
+					<HBox id="idCriteriConfronto">
+						<items>							
+						<!-- enabled="{criteriEnabledModel>/Cdr}" -->
+						<CheckBox
+								id="idCritCdr"
+								text="{i18n>filtroCdr}"
+								selected="{criteriModel>/Cdr}"
+							/>
+							<CheckBox
+								id="idCritMissione"
+								text="{i18n>filtroMissione}"
+								selected="{criteriModel>/Missione}"
+							/>
+							<CheckBox
+							id="idCritProgramma"
+								text="{i18n>filtroProgramma}"
+								selected="{criteriModel>/Programma}"
+							/>
+							<CheckBox
+								id="idCritAzione"
+								text="{i18n>filtroAzione}"
+								selected="{criteriModel>/Azione}"
+							/>
+							<CheckBox
+								id="idCritDenomCap"
+								text="{i18n>filtroDenomCap}"
+								selected="{criteriModel>/DenCap}"
+							/>
+							<CheckBox
+								id="idCritDenomPg"
+								text="{i18n>filtroDenomPg}"
+								selected="{criteriModel>/DenPg}"
+							/>
+						</items>
+						
+					</HBox>
+					
+				</Vbox>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content class="unsetPosition">
+			<IconTabBar
+				id="idTabBar"
+				expandable="false"
+				select="onTabBarSelect"
+				selectedKey="keyAnalisi"
+				class="zicon ziconText"
+			>
+				<items>
+					<IconTabFilter 
+						key="keyAnalisi"
+						text="{i18n>tabAnalisi}"
+						icon="sap-icon://document"
+						visible="{= ${criteriModel>/Cdr} || ${criteriModel>/Missione} ||  ${criteriModel>/Programma} || ${criteriModel>/Azione} || ${criteriModel>/DenCap} || ${criteriModel>/DenPg}}"
+					/>
+					<IconTabFilter
+						key="keyEcobilancio"
+						text="{i18n>tabEcobilancio}"
+						icon="sap-icon://document"
+						visible="{= !${criteriModel>/Cdr} &amp;&amp; !${criteriModel>/Missione} &amp;&amp;  !${criteriModel>/Programma} &amp;&amp; !${criteriModel>/Azione} &amp;&amp; !${criteriModel>/DenCap} &amp;&amp; !${criteriModel>/DenPg}}"
+					/>
+				</items>
+				<content>
+					<HBox
+						id="boxButtons"
+						justifyContent="End"
+					>
+						<Button
+							id="buttonListaRidotta"
+							text="{i18n>buttonListaRidotta}"
+							press="onPressListaRidotta"
+							type="Emphasized"
+							visible="{= ${modelTableExpansion>/isExpanded} &amp;&amp; !${criteriModel>/Cdr} &amp;&amp; !${criteriModel>/Missione} &amp;&amp;  !${criteriModel>/Programma} &amp;&amp; !${criteriModel>/Azione} &amp;&amp; !${criteriModel>/DenCap} &amp;&amp; !${criteriModel>/DenPg}}"
+							enabled="{listaButtonEnabled>/enabled}"
+							icon="sap-icon://zoom-out"
+							class="marginRight"
+						/>
+						<Button
+							id="buttonListaEstesa"
+							text="{i18n>buttonListaEstesa}"
+							press="onPressListaEstesa"
+							type="Emphasized"
+							visible="{= ${modelTableExpansion>/isCompressed} &amp;&amp; !${criteriModel>/Cdr} &amp;&amp; !${criteriModel>/Missione} &amp;&amp;  !${criteriModel>/Programma} &amp;&amp; !${criteriModel>/Azione} &amp;&amp; !${criteriModel>/DenCap} &amp;&amp; !${criteriModel>/DenPg}}"
+							enabled="{listaButtonEnabled>/enabled}"
+							icon="sap-icon://zoom-in"
+							class="marginRight"
+						/>
+						<!-- <Button
+							text="{i18n>buttonSalva}"
+							id="idButtonSalva"
+							type="Emphasized"
+							press="onSalva"
+							class="marginRight"
+						/> -->
+						<Button
+							text="{i18n>buttonExport}"
+							type="Emphasized"
+							icon="sap-icon://excel-attachment"
+							press="onPressExport"
+						/>
+					</HBox>
+					<ScrollContainer>
+						<content>
+							<Table
+								id="tableAnalisi"
+								growing="true"
+								sticky="ColumnHeaders"
+								mode="MultiSelect"
+								growingThreshold="10"
+								selectionChange="onselectTableItems($event, 'tableAnalisi', 'modelAnalisi')"
+								visible="{= ${criteriModel>/Cdr} || ${criteriModel>/Missione} ||  ${criteriModel>/Programma} || ${criteriModel>/Azione} || ${criteriModel>/DenCap} || ${criteriModel>/DenPg}}"								
+								items="{modelAnalisi>/}"
+							>
+								<columns>
+									<Column width="8rem">
+										<Text text="{i18n>thAmmin}" class="boldCss"/>
+									</Column>
+									<Column width="14rem">
+										<Text text="{i18n>thPosfin}" class="boldCss"/>
+									</Column>
+									<Column width="5rem">
+										<Text
+											text="{i18n>thCdr} {modelAnnoConfronto>/anno2}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column width="5rem">
+										<Text text="{i18n>thCdr} {modelAnnoConfronto>/anno1}" class="boldCss"/>
+									</Column>
+									<Column width="7rem">
+										<Text
+											text="{i18n>thMissione} {modelAnnoConfronto>/anno2}"
+											 class="boldCss"
+										/>
+									</Column>
+									<Column width="7rem">
+										<Text text="{i18n>thMissione} {modelAnnoConfronto>/anno1}" class="boldCss"/>
+									</Column>
+									<Column width="8rem">
+										<Text text="{i18n>thProgramma} {modelAnnoConfronto>/anno2}" class="boldCss"/>
+									</Column>
+									<Column width="8rem">
+										<Text text="{i18n>thProgramma} {modelAnnoConfronto>/anno1}" class="boldCss"/>
+									</Column>
+									<Column width="7rem">
+										<Text text="{i18n>thAzione} {modelAnnoConfronto>/anno2}" class="boldCss"/>
+									</Column>
+									<Column width="7rem">
+										<Text text="{i18n>thAzione} {modelAnnoConfronto>/anno1}" class="boldCss"/>
+									</Column>
+									<Column width="7rem">
+										<Text text="{i18n>thCap}" class="boldCss"/>
+									</Column>
+									<!-- <Column width="7rem">
+										<Text text="{i18n>thCap} {modelAnnoConfronto>/anno2}" class="boldCss"/>
+									</Column> -->
+									<Column width="20rem">
+										<Text text="{i18n>thDenomCap} {modelAnnoConfronto>/anno2}" class="boldCss"/>
+									</Column>
+									<Column width="20rem">
+										<Text text="{i18n>thDenomCap} {modelAnnoConfronto>/anno1}" class="boldCss"/>
+									</Column>
+									<!-- <Column width="10rem">
+										<Text text="{i18n>thDenomCap} {modelAnnoConfronto>/anno2}" class="boldCss"/>
+									</Column> -->
+									<Column width="10rem">
+										<Text text="{i18n>thPg}" class="boldCss"/>
+									</Column>
+									<Column width="20rem">
+										<Text text="{i18n>thDenomPg} {modelAnnoConfronto>/anno2}" class="boldCss"/>
+									</Column>
+									<Column width="20rem">
+										<Text text="{i18n>thDenomPg} {modelAnnoConfronto>/anno1}" class="boldCss"/>
+									</Column>
+									<!-- visible="{modelTableExpansion>/isExpanded}" -->
+									<Column
+										width="4rem"
+									>
+										<Text text="{i18n>thTitolo}" class="boldCss"/>
+									</Column>
+									<Column
+										width="14rem"
+									>
+										<Text text="{i18n>thDescrTitolo}" class="boldCss"/>
+									</Column>
+									<Column
+										width="5rem"
+									>
+										<Text text="{i18n>thCat}" class="boldCss"/>
+									</Column>
+									<Column
+										width="14rem"
+									>
+										<Text text="{i18n>thDescrCat}" class="boldCss"/>
+									</Column>
+									<Column
+										width="3rem"
+									>
+										<Text text="{i18n>thCe2}" class="boldCss"/>
+									</Column>
+									<Column
+										width="14rem"
+									>
+										<Text text="{i18n>thDescrCe2}" class="boldCss"/>
+									</Column>
+									<Column
+										width="3rem"
+									>
+										<Text text="{i18n>thCe3}" class="boldCss"/>
+									</Column>
+									<Column
+										width="14rem"
+									>
+										<Text text="{i18n>thDescrCe3}" class="boldCss"/>
+									</Column>
+									<Column
+										width="5rem"
+									>
+										<Text text="{i18n>thStato}" class="boldCss"/>
+									</Column>
+									<Column
+										width="7rem"
+									>
+										<Text text="{i18n>thSpeseInt}" class="boldCss"/>
+									</Column>
+									<Column
+										width="8rem"
+									>
+										<Text text="{i18n>thMultiambito}" class="boldCss"/>
+									</Column>
+									<!-- <Column
+										width="8rem"
+									>
+										<Text text="{i18n>thCapAggr}" class="boldCss"/>
+									</Column> -->
+									<Column
+										width="14rem"
+									>
+										<Text text="{i18n>thSpeseDirTra}" class="boldCss"/>
+									</Column>
+									<Column
+										width="7rem"
+									>
+										<Text text="{i18n>thEsito}" class="boldCss"/>
+									</Column>
+									<Column
+										width="5rem"
+									>
+										<Text text="{i18n>thEsitoPerc}" class="boldCss"/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello1a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 1 - Protezione dell’aria e del clima"/>
+											<Text
+												text="{i18n>thCc1}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello2a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+											tooltip="Cepa 2 - Gestione delle acque reflue"/>
+											<Text
+												text="{i18n>thCc2}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello3a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 3 - Gestione dei rifiuti"/>
+											<Text
+												text="{i18n>thCc3}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello4a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 4 - Protezione e risanamento del suolo, delle acque del sottosuolo e delle acque di superficie"/>
+											<Text
+												text="{i18n>thCc4}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello5a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 5 - Abbattimento del rumore e delle vibrazioni (esclusa la protezione degli ambienti di lavoro)"/>
+											<Text
+												text="{i18n>thCc5}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello6a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 6 - Protezione della biodiversità e del paesaggio"/>
+											<Text
+												text="{i18n>thCc6}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello7a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 7 - Protezione dalle radiazioni (ad esclusione della protezione degli ambienti di lavoro e del rischio tecnologico e di incidente nucleare)"/>
+											<Text
+												text="{i18n>thCc7}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello8a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 8 - Ricerca e sviluppo"/>
+											<Text
+												text="{i18n>thCc8}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello9a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 9 - Altre attività di protezione dell’ambiente"/>
+											<Text
+												text="{i18n>thCc9}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello10a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 10 - Uso e gestione delle acque interne"/>
+											<Text
+												text="{i18n>thCc10}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello11a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 11 - Uso e gestione delle foreste"/>
+												<Text
+												text="{i18n>thCc11}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello12a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 12 - Uso e gestione della flora e della fauna selvatiche"/>
+												<Text
+												text="{i18n>thCc12}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello13a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 13 - Uso e gestione delle materie prime energetiche non rinnovabili (combustibili fossili)"/>
+												<Text
+												text="{i18n>thCc13}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello14a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 14 - Uso e gestione delle materie prime non energetiche"/>
+												<Text
+												text="{i18n>thCc14}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello15a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 15 - Ricerca e sviluppo per l’uso e la gestione delle risorse naturali"/>
+												<Text
+												text="{i18n>thCc15}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello16a" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 16 - Altre attività di uso e gestione delle risorse naturali"/>
+												<Text
+												text="{i18n>thCc16}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										width="5rem"
+									>
+										<Text
+											tooltip="Nota"
+											text="{i18n>thNota}"
+											class="boldCss"
+										/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem vAlign="Inherit">
+										<cells>
+											<Text text="{modelAnalisi>CodiceAmmin}"/>
+											<zcontrollink:LinkPosizioneFinanziaria
+												id="linkPosFin"
+												anno="2024"
+												fikrs="S001"
+												fase="DLB"
+												reale="R"
+												versione="D"
+												fipex="{
+													path: 'modelAnalisi>Fipex',
+													formatter: '.formatterPosFin'
+												}"
+												datbis="99991231"
+												text="{modelAnalisi>Fipex}"
+												semanticObject="ESAMINAMODIFICA"
+											/>
+											<Text text="{modelAnalisi>CodiceCdrPre}"/>
+											<Text text="{modelAnalisi>CodiceCdr}"/>
+											<Text text="{modelAnalisi>CodiceMissionePre}"/>
+											<Text text="{modelAnalisi>CodiceMissione}"/>
+											<Text text="{modelAnalisi>CodiceProgrammaPre}"/>
+											<Text text="{modelAnalisi>CodiceProgramma}"/>
+											<Text text="{modelAnalisi>CodiceAzionePre}"/>
+											<Text text="{modelAnalisi>CodiceAzione}"/>
+											<Text text="{modelAnalisi>CodiceCapitolo}"/>
+											<!-- <Text text="{modelAnalisi>CodiceCapitoloPre}"/> -->
+											<Text text="{modelAnalisi>CapitoloPre}"/>
+											<Text text="{modelAnalisi>DescCapitolo}"/>
+											<Text text="{modelAnalisi>CodicePg}"/>
+											<Text text="{modelAnalisi>PgPre}"/>
+											<Text text="{modelAnalisi>DescPg}"/>
+											<!-- qua iniziano quelli in tabella estesa -->
+											<Text text="{modelAnalisi>CodiceTitolo}"/>
+											<Text text="{modelAnalisi>Titolo}"/>
+											<Text text="{modelAnalisi>CodiceCategoria}"/>
+											<Text text="{modelAnalisi>Categoria}"/>
+											<Text text="{modelAnalisi>CodiceClaeco2}"/>
+											<Text text="{modelAnalisi>Claeco2}"/>
+											<Text text="{modelAnalisi>CodiceClaeco3}"/>
+											<Text text="{modelAnalisi>Claeco3}"/>
+											<Text text="{
+												path: 'modelAnalisi>StatStatus',
+												formatter: '.formatter.formatterStatus'
+											}"/>
+											<!-- spese interne -->
+											<Select
+												enabled="{modelAnalisi>ENABLED}"
+												items="{
+													path: 'modelSpeseInt>/Spese',
+													templateShareable: 'false'
+												}"
+												change="onChangeSpeseInt($event, 'analisi')"
+												selectedKey="{modelAnalisi>Speseint}"
+											>
+												<items>
+													<core:Item
+														key="{modelSpeseInt>id}"
+														text="{modelSpeseInt>name}"
+													/>
+												</items>
+											</Select>
+											<Text text="{modelAnalisi>Multiambito}"/>
+											<!-- <Text text="{modelAnalisi>CapiAggr}"/> -->
+											<!-- spese dirette trasferite -->
+											<Text text="{modelAnalisi>SpeDirette}" />
+											<!-- <Select
+												items="{
+													path: 'modelSpeseDirTrasf>/Spese',
+													templateShareable: 'false'
+												}"
+												change=""
+											>
+												<items>
+													<core:Item
+														key="{modelSpeseDirTrasf>id}"
+														text="{modelSpeseDirTrasf>name}"
+													/>
+												</items>
+											</Select> -->
+											<!-- esito -->
+											<Select
+												enabled="{modelAnalisi>ENABLED}"
+												items="{
+													path: 'modelEsitoTable>/Esiti',
+													templateShareable: 'false'
+												}"
+												change="onChangeEsito"
+												selectedKey="{modelAnalisi>EsitoEco}"
+											>
+												<items>
+													<core:Item
+														key="{modelEsitoTable>id}"
+														text="{modelEsitoTable>name}"
+													/>
+												</items>
+											</Select>
+											<!-- perc esito -->
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_ESITOPERC}}" value="{modelAnalisi>EsitoEcoPerc}"/>
+											<!-- qua iniziano i cepacruma -->
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello1}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello2}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello3}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello4}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello5}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello6}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello7}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello8}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello9}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello10}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello11}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello12}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello13}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello14}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello15}"/>
+											<Input enabled="{= ${modelAnalisi>ENABLED} &amp;&amp; ${modelAnalisi>ENABLED_LIVELLO}}" value="{modelAnalisi>Livello16}"/>
+											<Button
+												id="iconButton"
+												type="{= ${modelAnalisi>Nota}.length > 0 ? 'Accept' : 'Emphasized' }"
+												icon="sap-icon://notes"
+												press="onOpenPopOverNote($event, 'analisi')"
+											/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</ScrollContainer>
+					<ScrollContainer>
+						<content>
+							<Table
+								id="tableEcobilancio"
+								items="{modelEcobilancio>/}"
+								growing="true"
+								sticky="ColumnHeaders"
+								mode="MultiSelect"
+								selectionChange="onselectTableItems($event, 'tableEcobilancio', 'modelEcobilancio')"
+								growingThreshold="10"
+								visible="{= !${criteriModel>/Cdr} &amp;&amp; !${criteriModel>/Missione} &amp;&amp;  !${criteriModel>/Programma} &amp;&amp; !${criteriModel>/Azione} &amp;&amp; !${criteriModel>/DenCap} &amp;&amp; !${criteriModel>/DenPg}}"
+							>
+								<columns>
+									<Column
+										demandPopin="true"
+										width="8rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thAmmin}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="13rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thPosfin}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="4rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thCdr}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDescrCdr}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thMissione}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDescrMissione}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="6rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thProgramma}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDescrProgramma}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="4rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thAzione}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDescrAzione}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="4rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thTitolo}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDescrTitolo}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thCat}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDescrCat}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="3rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thCe2}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDescrCe2}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="3rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thCe3}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDescrCe3}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thCap}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="15rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDenomCap}"
+											class="boldCss"
+										/>
+									</Column>
+									<!-- visible="{modelTableExpansion>/isExpanded}" -->
+									<Column
+										demandPopin="true"
+										width="10rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thPg}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+										visible="{modelTableExpansion>/isExpanded}"
+									>
+										<Text
+											text="{i18n>thDenomPg}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="4rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thStato}"
+											class="boldCss"
+										/>
+									</Column>
+
+									<Column
+										demandPopin="true"
+										width="7rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thSpeseInt}"
+											class="boldCss"
+										/>
+									</Column>
+
+									<Column
+										demandPopin="true"
+										width="6rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thMultiambito}"
+											class="boldCss"
+										/>
+									</Column>
+
+									<!-- <Column
+										demandPopin="true"
+										width="9rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thCapAggr}"
+											class="boldCss"
+										/>
+									</Column> -->
+
+									<Column
+										demandPopin="true"
+										width="14rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thSpeseDirTra}"
+											class="boldCss"
+										/>
+									</Column>
+
+									<Column
+										demandPopin="true"
+										width="7rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thEsito}"
+											class="boldCss"
+										/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											text="{i18n>thEsitoPerc}"
+											class="boldCss"
+										/>
+									</Column>
+
+									<!-- colonne cepacruma -->
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello1" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 1 - Protezione dell’aria e del clima"/>
+											<Text
+												text="{i18n>thCc1}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello2" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 2 - Gestione delle acque reflue"/>
+											<Text
+												text="{i18n>thCc2}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello3" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 3 - Gestione dei rifiuti"/>
+											<Text
+												text="{i18n>thCc3}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello4" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 4 - Protezione e risanamento del suolo, delle acque del sottosuolo e delle acque di superficie"/>
+											<Text
+												text="{i18n>thCc4}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello5" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 5 - Abbattimento del rumore e delle vibrazioni (esclusa la protezione degli ambienti di lavoro)"/>
+											<Text
+												text="{i18n>thCc5}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello6" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 6 - Protezione della biodiversità e del paesaggio"/>
+											<Text
+												text="{i18n>thCc6}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello7" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 7 - Protezione dalle radiazioni (ad esclusione della protezione degli ambienti di lavoro e del rischio tecnologico e di incidente nucleare)"/>
+											<Text
+												text="{i18n>thCc7}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello8" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 8 - Ricerca e sviluppo"/>
+											<Text
+												text="{i18n>thCc8}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello9" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 9 - Altre attività di protezione dell’ambiente"/>
+											<Text
+												text="{i18n>thCc9}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello10" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 10 - Uso e gestione delle acque interne"/>
+											<Text
+												text="{i18n>thCc10}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello11" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 11 - Uso e gestione delle foreste"/>
+												<Text
+												text="{i18n>thCc11}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello12" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 12 - Uso e gestione della flora e della fauna selvatiche"/>
+												<Text
+												text="{i18n>thCc12}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello13" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 13 - Uso e gestione delle materie prime energetiche non rinnovabili (combustibili fossili)"/>
+												<Text
+												text="{i18n>thCc13}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello14" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 14 - Uso e gestione delle materie prime non energetiche"/>
+												<Text
+												text="{i18n>thCc14}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello15" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 15 - Ricerca e sviluppo per l’uso e la gestione delle risorse naturali"/>
+												<Text
+												text="{i18n>thCc15}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello16" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 16 - Altre attività di uso e gestione delle risorse naturali"/>
+												<Text
+												text="{i18n>thCc16}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="4rem"
+										popinDisplay="Inline"
+									>
+										<Text
+											tooltip="Nota"
+											text="{i18n>thNota}"
+											class="boldCss"
+										/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<Text text="{modelEcobilancio>codice_ammin}"/>
+											<zcontrollink:LinkPosizioneFinanziaria
+												id="linkPosFin2"
+												anno="2024"
+												fikrs="S001"
+												fase="DLB"
+												reale="R"
+												versione="D"
+												fipex="{
+													path: 'modelEcobilancio>fipex',
+													formatter: '.formatterPosFin'
+												}"
+												datbis="99991231"
+												text="{modelEcobilancio>fipex}"
+												semanticObject="ESAMINAMODIFICA"
+											/>
+											<Text text="{modelEcobilancio>Codice_cdr}"/>
+											<Text text="{modelEcobilancio>Cdr}"/>
+											<Text text="{modelEcobilancio>codice_missione}"/>
+											<Text text="{modelEcobilancio>Missione}"/>
+											<Text text="{modelEcobilancio>codice_programma}"/>
+											<Text text="{modelEcobilancio>Programma}"/>
+											<Text text="{modelEcobilancio>codice_azione}"/>
+											<Text text="{modelEcobilancio>Azione}"/>
+											<Text text="{modelEcobilancio>codice_titolo}"/>
+											<Text text="{modelEcobilancio>Titolo}"/>
+											<Text text="{modelEcobilancio>codice_categoria}"/>
+											<Text text="{modelEcobilancio>Categoria}"/>
+											<Text text="{modelEcobilancio>codice_claeco2}"/>
+											<Text text="{modelEcobilancio>Claeco2}"/>
+											<Text text="{modelEcobilancio>codice_claeco3}"/>
+											<Text text="{modelEcobilancio>Claeco3}"/>
+											<Text text="{modelEcobilancio>codice_capitolo}"/>
+											<Text text="{modelEcobilancio>Capitolo}"/>
+											<Text text="{modelEcobilancio>codice_pg}"/>
+											<Text text="{modelEcobilancio>Pg}"/>
+											<Text text="{
+													path: 'modelEcobilancio>stat_status',
+													formatter: '.formatter.formatterStatus'
+												}"/>
+											<Select
+												enabled="{modelEcobilancio>ENABLED}"
+												items="{
+													path: 'modelSpeseInt>/Spese',
+													templateShareable: 'false'
+												}"
+												change="onChangeSpeseInt($event, 'ecobilancio')"
+												selectedKey="{modelEcobilancio>SpeseInt}"
+											>
+												<items>
+													<core:Item
+														key="{modelSpeseInt>id}"
+														text="{modelSpeseInt>name}"
+													/>
+												</items>
+											</Select>
+											<Text text="{modelEcobilancio>multiambito}"/>
+											<!-- <Text text="{modelEcobilancio>capi_aggr}"/> -->
+											<Text text="{modelEcobilancio>spese_dir}"/>
+											<!-- <Select
+											    id=""
+												items="{
+													path: 'modelSpeseDirTrasf>/Spese',
+													templateShareable: 'false'
+												}"
+												change=""
+												selectedKey="{modelEcobilancio>spese_dir}"
+											>
+												<items>
+													<core:Item
+														key="{modelSpeseDirTrasf>id}"
+														text="{modelSpeseDirTrasf>name}"
+													/>
+												</items>
+											</Select> -->
+											<Select
+												enabled="{modelEcobilancio>ENABLED}"
+												items="{
+													path: 'modelEsitoTable>/Esiti',
+													templateShareable: 'false'
+												}"
+												change="onChangeEsito"
+												selectedKey="{modelEcobilancio>esito_eco}"
+											>
+												<items>
+													<core:Item
+														key="{modelEsitoTable>id}"
+														text="{modelEsitoTable>name}"
+													/>
+												</items>
+											</Select>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_ESITOPERC}}" value="{modelEcobilancio>esito_eco_perc}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello1}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello2}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello3}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello4}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello5}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello6}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello7}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello8}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello9}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello10}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello11}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello12}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello13}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello14}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello15}"/>
+											<Input enabled="{= ${modelEcobilancio>ENABLED} &amp;&amp; ${modelEcobilancio>ENABLED_LIVELLO}}" value="{modelEcobilancio>livello16}"/>
+											<Button
+												id="iconButton2"
+												type="{= ${modelEcobilancio>Nota}.length > 0 ? 'Accept' : 'Emphasized' }"
+												icon="sap-icon://notes"
+												press="onOpenPopOverNote($event, 'ecobilancio')"
+											/>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</ScrollContainer>
+				</content>
+			</IconTabBar>
+		</f:content>
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+						text="{i18n>buttonSalva}"
+						id="idButtonSalva"
+						type="Emphasized"
+						press="onSalva"
+					/><!-- class="marginRight" -->
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

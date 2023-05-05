@@ -1,0 +1,138 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSS4_CO_HELP_POSFIN_SRV" xml:lang="it" sap:schema-version="1">
+            <EntityType Name="ZET_PF" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SEMOBJ"/>
+                    <PropertyRef Name="FIKRS"/>
+                    <PropertyRef Name="ANNO"/>
+                    <PropertyRef Name="FIPEX"/>
+                    <PropertyRef Name="FASE"/>
+                    <PropertyRef Name="REALE"/>
+                    <PropertyRef Name="VERSIONE"/>
+                    <PropertyRef Name="DATBIS"/>
+                </Key>
+                <Property Name="SEMOBJ" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Semantic Object" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DATA_INIZIO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Inizio validità" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DATA_FINE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fine validità" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FIKRS" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Area fin." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ANNO" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Esercizio" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FIPEX" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:label="Pos. finanz." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PRCTR" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Amministraz." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_AMMINISTRAZIONE" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_AMMINISTRAZIONE" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_CAPITOLO" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Capitolo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_CAPITOLO" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_CAPITOLO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_PG" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="PG" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_PG" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_PG" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_TITOLO" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Titolo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_TITOLO" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_TITOLO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_NATURA" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Natura" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_NATURA" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_NATURA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_TIPOLOGIA" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipologia" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_TIPOLOGIA" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_TIPOLOGIA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_PROVENTO" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Provento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_PROVENTO" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_PROVENTO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_MISSIONE" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Missione" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_MISSIONE" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_MISSIONE" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_PROGRAMMA" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Programma" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_PROGRAMMA" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_PROGRAMMA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_AZIONE" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Azione" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_AZIONE" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_AZIONE" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_CATEGORIA" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Categoria" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_CATEGORIA" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_CATEGORIA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_CLAECO2" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="CE2" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_E2" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_E2" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_CLAECO3" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="CE3" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_E3" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_E3" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_CDR" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="CDR" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_CDR" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_CDR" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CODICE_RAGIONERIA" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="RAGIONERIA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DESCR_RAG" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCR_RAG" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FASE" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fase" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="REALE" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Scen.Reale/Simulato" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="VERSIONE" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Versione" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DATBIS" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fine validità" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SPESA" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Indicatore" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ENTRATA" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Indicatore" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ENTRATA_NEW" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Indicatore" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FILTER" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="FILTER" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ZET_PF_DESCR" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="FIKRS"/>
+                    <PropertyRef Name="ANNO"/>
+                    <PropertyRef Name="FASE"/>
+                    <PropertyRef Name="REALE"/>
+                    <PropertyRef Name="VERSIONE"/>
+                    <PropertyRef Name="FIPEX"/>
+                    <PropertyRef Name="DATBIS"/>
+                </Key>
+                <Property Name="CODICE_CDR" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro di Respons." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FIKRS" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Area fin." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_CDR" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ANNO" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Anno" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_CDR" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FASE" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fase" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_RAGIONERIA" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Ragioneria" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REALE" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Scen.Reale/Simulato" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_RAG" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VERSIONE" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Versione" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_RAG" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FIPEX" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:label="Pos. finanz." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DATBIS" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fine validità" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EOS" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Entrata/Spesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PRCTR" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Amministraz." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_PRCTR" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_PRCTR" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_CAPITOLO" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Capitolo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_CAPITOLO" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_CAPITOLO" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_PG" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="PG" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_PG" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_PG" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_MISSIONE" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Missione" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_MISSIONE" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_MISSIONE" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_PROGRAMMA" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Programma" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_PROGRAMMA" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_PROGRAMMA" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_AZIONE" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Azione" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_AZIONE" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_AZIONE" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_CATEGORIA" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Categoria" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_CATEGORIA" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_CATEGORIA" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_CLAECO2" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="CE2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_CLAECO2" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_CLAECO2" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_CLAECO3" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="CE3" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_CLAECO3" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_CLAECO3" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_TITOLO" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Titolo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_TITOLO" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_TITOLO" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_NATURA" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Natura" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_NATURA" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_NATURA" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_TIPOLOGIA" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipologia" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_TIPOLOGIA" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_TIPOLOGIA" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CODICE_PROVENTO" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Provento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_BR_PROVENTO" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descrizione Breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR_ES_PROVENTO" Type="Edm.String" Nullable="false" MaxLength="1333" sap:unicode="false" sap:label="Descrizione Estesa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZSS4_CO_HELP_POSFIN_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZES_PF_SET" EntityType="ZSS4_CO_HELP_POSFIN_SRV.ZET_PF" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ZES_PF_DESCR_SET" EntityType="ZSS4_CO_HELP_POSFIN_SRV.ZET_PF_DESCR" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZSS4_CO_HELP_POSFIN_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZSS4_CO_HELP_POSFIN_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
