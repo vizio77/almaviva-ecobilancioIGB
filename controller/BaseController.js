@@ -36,7 +36,8 @@ sap.ui.define([
 			//this._onClearInput();
 			var aSelectionsSets = oEvent.getParameters().selectionSet;
 			//lt setto il valore della posizione finanziaria a "" così da resettare il valore
-			this.byId("idPosFin").setValue("");
+			
+			if(this.byId("idPosFin")) this.byId("idPosFin").setValue("");
 			this.getView().getModel("modelAdattaFiltri").setProperty("/CodiceAmmin", "");
 			//this.clearGlobalModel();
 			for (var i = 0; i < aSelectionsSets.length; i++) {

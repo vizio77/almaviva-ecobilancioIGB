@@ -430,10 +430,11 @@ sap.ui.define(
 						}
 
 						// valori dei filtri
-						var posfin = this.getView().byId("idPosFin").getValue();
+						if(this.byId("idPosFin")) var posfin = this.getView().byId("idPosFin").getValue();
+						/* var posfin = this.getView().byId("idPosFin").getValue();
 						if (posfin) {
 							aFilters.aFilters.push(new Filter("Fipex", sap.ui.model.FilterOperator.EQ, posfin));
-						}
+						} */
 						var sCapitolo = this.getView().byId("idCapitolo").getValue();
 						if (sCapitolo) {
 							aFilters.aFilters.push(new Filter("CodiceCapitolo", sap.ui.model.FilterOperator.EQ, sCapitolo));
@@ -495,7 +496,7 @@ sap.ui.define(
 
 						var selectedIndex = this.getView().byId("filtroAndOr").getSelectedIndex();
 
-						//if(selectedIndex === 1) aFilters.aFilters.push(new Filter("andFilter", sap.ui.model.FilterOperator.EQ, true));
+						if(selectedIndex === 0) aFilters.aFilters.push(new Filter("FlagCriteriAnd", sap.ui.model.FilterOperator.EQ, true));
 
 						aFilters = this._setFlagFilters(aFilters, selectedIndex);
 						// var ammin = this.getView().byId("idAmministrazione").getValue();
@@ -543,10 +544,11 @@ sap.ui.define(
 						}
 
 						// valori dei filtri
-						var posfin = this.getView().byId("idPosFin").getValue();
+						if(this.byId("idPosFin")) var posfin = this.getView().byId("idPosFin").getValue();
+						/* var posfin = this.getView().byId("idPosFin").getValue();
 						if (posfin) {
 							aFilters.aFilters.push(new Filter("fipex", sap.ui.model.FilterOperator.EQ, posfin));
-						}
+						} */
 
 						var sCapitolo = this.getView().byId("idCapitolo").getValue();
 						if (sCapitolo) {
@@ -687,7 +689,7 @@ sap.ui.define(
 					});
 				},
 
-				_setFlagFiltersOld: function (oFilter, selectedIndex) {
+				_setFlagFilters: function (oFilter, selectedIndex) {
 					let oCriteri = this.getView().getModel("criteriModel").getData();
 									
 					for (const [key, value] of Object.entries(oCriteri)) {
@@ -713,7 +715,7 @@ sap.ui.define(
 					
 					return oFilter;
 				},
-				_setFlagFilters: function (oFilter, selectedIndex) {
+				_setFlagFiltersNew: function (oFilter, selectedIndex) {
 					let oCriteri = this.getView().getModel("criteriModel").getData();
 
 					var filtroOr = [];

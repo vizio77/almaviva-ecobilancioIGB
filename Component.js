@@ -3,13 +3,13 @@ sap.ui.define([
 	"sap/ui/Device",
 	"zsap/com/r3/cobi/s4/ecobilancioigb/model/models",
 	"sap/m/MessageBox",
-	"z_s4_coniauth/coniauth/controls/GestConi"
+	//"z_s4_coniauth/coniauth/controls/GestConi"
 ], function(UIComponent, Device, models, MessageBox, GestConi) {
 	"use strict";
 
 	return UIComponent.extend("zsap.com.r3.cobi.s4.ecobilancioigb.Component", {
 
-		GestConi: GestConi,
+		//GestConi: GestConi,
 		metadata: {
 			manifest: "json",
 			config: {
@@ -28,7 +28,7 @@ sap.ui.define([
 			this.getRouter().initialize();
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
-			this._getConi();
+			//this._getConi();
 		},
 
 		_getConi: async function() {
