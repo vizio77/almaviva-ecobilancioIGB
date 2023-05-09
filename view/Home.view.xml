@@ -396,7 +396,8 @@
 								growingThreshold="10"
 								selectionChange="onselectTableItems($event, 'tableAnalisi', 'modelAnalisi')"
 								visible="{= ${criteriModel>/Cdr} || ${criteriModel>/Missione} ||  ${criteriModel>/Programma} || ${criteriModel>/Azione} || ${criteriModel>/DenCap} || ${criteriModel>/DenPg}}"								
-								items="{modelAnalisi>/}"
+								items="{path: 'modelAnalisi>/' }"
+								
 							>
 								<columns>
 									<Column width="8rem">
@@ -835,9 +836,13 @@
 											<!-- spese interne -->
 											<Select
 												enabled="{modelAnalisi>ENABLED}"
+												forceSelection="false"
 												items="{
 													path: 'modelSpeseInt>/Spese',
-													templateShareable: 'false'
+													templateShareable: 'false',
+													filters : [
+														{ path : 'id', operator : 'NE', value1 : ''}
+													]
 												}"
 												change="onChangeSpeseInt($event, 'analisi')"
 												selectedKey="{modelAnalisi>Speseint}"
@@ -1540,9 +1545,13 @@
 												}"/>
 											<Select
 												enabled="{modelEcobilancio>ENABLED}"
+												forceSelection="false"
 												items="{
 													path: 'modelSpeseInt>/Spese',
-													templateShareable: 'false'
+													templateShareable: 'false',
+													filters : [
+														{ path : 'id', operator : 'NE', value1 : ''}
+													]
 												}"
 												change="onChangeSpeseInt($event, 'ecobilancio')"
 												selectedKey="{modelEcobilancio>SpeseInt}"
