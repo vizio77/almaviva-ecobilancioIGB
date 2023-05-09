@@ -116,15 +116,11 @@
                 "sap.ui.core": {},
                 "sap.ui.layout": {},
                 "sap.ushell": {},
-                "sap.uxap": {}
+                "sap.uxap": {},
+                "zsap.com.r3.cobi.s4.custposfin.z_s4_zposfinlink": {},
+                "zsap.com.r3.cobi.s4.custposfin.z_s4_zposfin": {},
+                "z_s4_coniauth.coniauth": {}
             }
-        },
-		"resourceRoots": {
-            "zsap.com.r3.cobi.s4.z_s4_autgius": "../../../../../../sap/bc/ui5_ui5/sap/z_s4_autgius",
-            "zsap.com.r3.cobi.s4.custposfin.z_s4_zposfinlink": "../../../../../../sap/bc/ui5_ui5/sap/z_s4_zposflink/src/custposfin/z_s4_zposfinlink",
-			"custlinksar.custlinksar": "../../../../../../sap/bc/ui5_ui5/sap/z_s4_linksar/src/custlinksar/custlinksar",
-			"zsap.com.r3.cobi.s4.custposfin.z_s4_zposfin.controls" : "../../../../../../sap/bc/ui5_ui5/sap/z_s4_zposfin/src/custposfin/z_s4_zposfin/controls",
-            "zsap.com.r3.cobi.s4.z_s4_auth_tooltip": "../../../../../../sap/bc/ui5_ui5/sap/z_s4_auth_link/resources/zsap/com/r3/cobi/s4/z_s4_auth_tooltip"
         },
         "contentDensities": {
             "compact": true,
