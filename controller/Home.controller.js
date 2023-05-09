@@ -430,10 +430,10 @@ sap.ui.define(
 						}
 
 						// valori dei filtri
-						/* var posfin = this.getView().byId("idPosFin").getValue();
+						var posfin = this.getView().byId("idPosFin").getValue();
 						if (posfin) {
 							aFilters.aFilters.push(new Filter("Fipex", sap.ui.model.FilterOperator.EQ, posfin));
-						} */
+						}
 						var sCapitolo = this.getView().byId("idCapitolo").getValue();
 						if (sCapitolo) {
 							aFilters.aFilters.push(new Filter("CodiceCapitolo", sap.ui.model.FilterOperator.EQ, sCapitolo));
@@ -495,6 +495,8 @@ sap.ui.define(
 
 						var selectedIndex = this.getView().byId("filtroAndOr").getSelectedIndex();
 
+						//if(selectedIndex === 1) aFilters.aFilters.push(new Filter("andFilter", sap.ui.model.FilterOperator.EQ, true));
+
 						aFilters = this._setFlagFilters(aFilters, selectedIndex);
 						// var ammin = this.getView().byId("idAmministrazione").getValue();
 						// var ammin = this.getView().getModel("modelAdattaFiltri").getData().CodiceAmmin;
@@ -541,10 +543,10 @@ sap.ui.define(
 						}
 
 						// valori dei filtri
-						/* var posfin = this.getView().byId("idPosFin").getValue();
+						var posfin = this.getView().byId("idPosFin").getValue();
 						if (posfin) {
 							aFilters.aFilters.push(new Filter("fipex", sap.ui.model.FilterOperator.EQ, posfin));
-						} */
+						}
 
 						var sCapitolo = this.getView().byId("idCapitolo").getValue();
 						if (sCapitolo) {
@@ -685,6 +687,32 @@ sap.ui.define(
 					});
 				},
 
+				_setFlagFiltersOld: function (oFilter, selectedIndex) {
+					let oCriteri = this.getView().getModel("criteriModel").getData();
+									
+					for (const [key, value] of Object.entries(oCriteri)) {
+						if (key === "Cdr" && value) {
+							oFilter.aFilters.push(new Filter("FlagCdr", sap.ui.model.FilterOperator.EQ, "X"));
+						}
+						if (key === "Missione" && value) {
+							oFilter.aFilters.push(new Filter("FlagMissione", sap.ui.model.FilterOperator.EQ, "X"));
+						}
+						if (key === "Programma" && value) {
+							oFilter.aFilters.push(new Filter("FlagProgramma", sap.ui.model.FilterOperator.EQ, "X"));
+						}
+						if (key === "Azione" && value) {
+							oFilter.aFilters.push(new Filter("FlagAzione", sap.ui.model.FilterOperator.EQ, "X"));
+						}
+						if (key === "DenCap" && value) {
+							oFilter.aFilters.push(new Filter("FlagCapitolo", sap.ui.model.FilterOperator.EQ, "X"));
+						}
+						if (key === "DenPg" && value) {
+							oFilter.aFilters.push(new Filter("FlagPg", sap.ui.model.FilterOperator.EQ, "X"));
+						}
+					}
+					
+					return oFilter;
+				},
 				_setFlagFilters: function (oFilter, selectedIndex) {
 					let oCriteri = this.getView().getModel("criteriModel").getData();
 

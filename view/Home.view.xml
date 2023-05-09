@@ -102,8 +102,8 @@
 										change="onChangeT($event, 'posFin')"
 										liveChange="onSelectPosFin"
 									/> -->
-									<!-- <zcontrol:InputPosizioneFinanziaria id="idPosFin" fase="DLB" reale="R" anno="2024" fikrs="S001" spesa="X" maxSuggestionWidth="60%"
-										MODEL_FILTER_NAME="modelAdattaFiltri" versione="D"/> -->
+									<zcontrol:InputPosizioneFinanziaria id="idPosFin" fase="DLB" reale="R" anno="2024" fikrs="S001" spesa="X" maxSuggestionWidth="60%"
+										MODEL_FILTER_NAME="modelAdattaFiltri" versione="D"/>
 									<!-- <Input id="idPosFin" value="{modelPosFin>/posFinHelp/posFin/Fipex}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onPosFin"/> -->
 								</fb:control>
 							</fb:FilterGroupItem>
@@ -272,56 +272,52 @@
 						</fb:filterGroupItems>
 					</fb:Filterbar>
 					<Text text="{i18n>titleCriteriConf}" class="titleLabel" />
-					<Vbox>
-
+					<VBox>
 						<HBox>
 							<items>
 								<Label labelFor="filtroAndOr" text="Logica condizione:" class="sapUiTinyMarginTop"/>
 								<RadioButtonGroup id="filtroAndOr" columns="2">
 									<RadioButton text="And"></RadioButton>
 									<RadioButton text="Or"></RadioButton>
-							</RadioButtonGroup>
-						</items>
-						
-					</HBox>
-					<HBox id="idCriteriConfronto">
-						<items>							
-						<!-- enabled="{criteriEnabledModel>/Cdr}" -->
-						<CheckBox
-								id="idCritCdr"
-								text="{i18n>filtroCdr}"
-								selected="{criteriModel>/Cdr}"
-							/>
+								</RadioButtonGroup>
+							</items>
+						</HBox>
+						<HBox id="idCriteriConfronto">
+							<items>							
+							<!-- enabled="{criteriEnabledModel>/Cdr}" -->
 							<CheckBox
-								id="idCritMissione"
-								text="{i18n>filtroMissione}"
-								selected="{criteriModel>/Missione}"
-							/>
-							<CheckBox
-							id="idCritProgramma"
-								text="{i18n>filtroProgramma}"
-								selected="{criteriModel>/Programma}"
-							/>
-							<CheckBox
-								id="idCritAzione"
-								text="{i18n>filtroAzione}"
-								selected="{criteriModel>/Azione}"
-							/>
-							<CheckBox
-								id="idCritDenomCap"
-								text="{i18n>filtroDenomCap}"
-								selected="{criteriModel>/DenCap}"
-							/>
-							<CheckBox
-								id="idCritDenomPg"
-								text="{i18n>filtroDenomPg}"
-								selected="{criteriModel>/DenPg}"
-							/>
-						</items>
-						
-					</HBox>
-					
-				</Vbox>
+									id="idCritCdr"
+									text="{i18n>filtroCdr}"
+									selected="{criteriModel>/Cdr}"
+								/>
+								<CheckBox
+									id="idCritMissione"
+									text="{i18n>filtroMissione}"
+									selected="{criteriModel>/Missione}"
+								/>
+								<CheckBox
+								id="idCritProgramma"
+									text="{i18n>filtroProgramma}"
+									selected="{criteriModel>/Programma}"
+								/>
+								<CheckBox
+									id="idCritAzione"
+									text="{i18n>filtroAzione}"
+									selected="{criteriModel>/Azione}"
+								/>
+								<CheckBox
+									id="idCritDenomCap"
+									text="{i18n>filtroDenomCap}"
+									selected="{criteriModel>/DenCap}"
+								/>
+								<CheckBox
+									id="idCritDenomPg"
+									text="{i18n>filtroDenomPg}"
+									selected="{criteriModel>/DenPg}"
+								/>
+							</items>
+						</HBox>
+					</VBox>
 				</f:content>
 			</f:DynamicPageHeader>
 		</f:header>

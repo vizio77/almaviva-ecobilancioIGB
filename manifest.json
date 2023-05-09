@@ -1,211 +1,207 @@
 {
-	"_version": "1.7.0",
-	"sap.app": {
-		"id": "zsap.com.r3.cobi.s4.ecobilancioigb",
-		"type": "application",
-		"i18n": "i18n/i18n.properties",
-		"applicationVersion": {
-			"version": "1.0.0"
-		},
-		"title": "{{appTitle}}",
-		"dataSources": {
-			"sapHanaS2Match": {
-				"uri": "/sap/opu/odata/sap/ZSS4_PROP_SPE_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"annotations": []
-				}
-			},
-			"sapHanaS2Ecobilancio": {
-				"uri": "/sap/opu/odata/sap/ZSS4_COBI_ECOBILANCIO_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"annotations": []
-				}
-			},
-			"sapHanaS2EcobilancioIGB": {
-				"uri": "/sap/opu/odata/sap/ZSS4_COBI_ECOBILANCIO_IGB_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"annotations": []
-				}
-			},
-			"sapHanaS2Tipologiche": {
-				"uri": "/sap/opu/odata/sap/ZSS4_CO_GEST_TIPOLOGICHE_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"annotations": []
-				}
-			},
-			"ZSS4_CO_HELP_POSFIN_SRV": {
-				"uri": "/sap/opu/odata/sap/ZSS4_CO_HELP_POSFIN_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"localUri": "localService/ZSS4_CO_HELP_POSFIN_SRV/metadata.xml"
-				}
-			},
-			"sapHanaS2Autorizzazioni": {
-				"uri": "/sap/opu/odata/sap/ZSS4_COBI_LEGGI_AUTORIZZAZIONI_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"localUri": "localService/metadataAutorizzazioni.xml"
-				}
-			},
-			"sapHanaS2": {
-				"uri": "/sap/opu/odata/sap/ZSS4_COBI_ALV_SRV/",
-				"type": "OData",
-				"settings": {
-					"annotations": [],
-					"localUri": "localService/metadata.xml",
-					"odataVersion": "2.0"
-				}
-			},
-			"ZKTIP_AMM_01_CDS": {
-				"uri": "/sap/opu/odata/sap/ZKTIP_AMM_01_CDS/",
-				"type": "OData",
-				"settings": {
-					"annotations": [],
-					"localUri": "localService/metadata.xml",
-					"odataVersion": "2.0"
-				}
-			}
-		},
-		"description": "{{appDescription}}",
-		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.40.12"
-		}
-	},
-	"sap.ui": {
-		"technology": "UI5",
-		"icons": {
-			"icon": "",
-			"favIcon": "",
-			"phone": "",
-			"phone@2": "",
-			"tablet": "",
-			"tablet@2": ""
-		},
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-		]
-	},
-	"sap.ui5": {
-		"rootView": {
-			"viewName": "zsap.com.r3.cobi.s4.ecobilancioigb.view.App",
-			"type": "XML"
-		},
-		"dependencies": {
-			"minUI5Version": "1.30.0",
-			"libs": {
-				"sap.collaboration": {},
-				"sap.m": {},
-				"sap.ui.comp": {},
-				"sap.ui.core": {},
-				"sap.ui.layout": {},
-				"sap.ushell": {},
-				"sap.uxap": {}
-			}
-		},
-		"resourceRoots": {
-            "zsap.com.r3.cobi.s4.z_s4_autgius": "../../../../../../sap/bc/ui5_ui5/sap/z_s4_autgius",
-            "zsap.com.r3.cobi.s4.custposfin.z_s4_zposfinlink": "../../../../../../sap/bc/ui5_ui5/sap/z_s4_zposflink/src/custposfin/z_s4_zposfinlink",
-			"custlinksar.custlinksar": "../../../../../../sap/bc/ui5_ui5/sap/z_s4_linksar/src/custlinksar/custlinksar",
-			"zsap.com.r3.cobi.s4.custposfin.z_s4_zposfin.controls" : "../../../../../../sap/bc/ui5_ui5/sap/z_s4_zposfin/src/custposfin/z_s4_zposfin/controls",
-            "zsap.com.r3.cobi.s4.z_s4_auth_tooltip": "../../../../../../sap/bc/ui5_ui5/sap/z_s4_auth_link/resources/zsap/com/r3/cobi/s4/z_s4_auth_tooltip"
+    "_version": "1.7.0",
+    "sap.app": {
+        "id": "zsap.com.r3.cobi.s4.ecobilancioigb",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
         },
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
-		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
-					"bundleName": "zsap.com.r3.cobi.s4.ecobilancioigb.i18n.i18n"
-				}
-			},
-			"sapHanaS2": {
-				"dataSource": "sapHanaS2",
-				"preload": true,
-				"settings": {}
-			},
-			"sapHanaS2Match": {
-				"dataSource": "sapHanaS2Match"
-			},
-			"sapHanaS2Ecobilancio": {
-				"dataSource": "sapHanaS2Ecobilancio"
-			},
-			"sapHanaS2EcobilancioIGB": {
-				"dataSource": "sapHanaS2EcobilancioIGB"
-			},
-			"sapHanaS2Tipologiche": {
-				"dataSource": "sapHanaS2Tipologiche",
-				"preload": true,
-				"settings": {}
-			},
-			"sapHanaS2Autorizzazioni": {
-				"dataSource": "sapHanaS2Autorizzazioni"
-			},
-			"ZKTIP_AMM_01_CDS": {
-				"dataSource": "ZKTIP_AMM_01_CDS"
-			}
-		},
-		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
-		},
-		"routing": {
-			"config": {
-				"routerClass": "sap.m.routing.Router",
-				"viewType": "XML",
-				"viewPath": "zsap.com.r3.cobi.s4.ecobilancioigb.view",
-				"controlId": "app",
-				"controlAggregation": "pages",
-				"transition": "slide",
-				"async": true
-			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "Sottostrumento",
-					"target": "Sottostrumento"
-				},
-				{
-					"pattern": "Home/{Fikrs}/{CodiceStrumento}/{CodiceStrumentoOri}/{CodiceSottostrumento}/{Datbis}",
-					"name": "Home",
-					"target": "Home"
-				}
-			],
-			"targets": {
-				"Home": {
-					"viewId": "Home",
-					"viewName": "Home"
-				},
-				"Sottostrumento": {
-					"viewId": "Sottostrumento",
-					"viewName": "Sottostrumento"
-				}
-			}
-		}
-	},
-	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/sap/z_s4_ecobiligb",
-		"_version": "1.1.0"
-	}
+        "title": "{{appTitle}}",
+        "dataSources": {
+            "sapHanaS2Match": {
+                "uri": "/sap/opu/odata/sap/ZSS4_PROP_SPE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "annotations": []
+                }
+            },
+            "sapHanaS2Ecobilancio": {
+                "uri": "/sap/opu/odata/sap/ZSS4_COBI_ECOBILANCIO_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "annotations": []
+                }
+            },
+            "sapHanaS2EcobilancioIGB": {
+                "uri": "/sap/opu/odata/sap/ZSS4_COBI_ECOBILANCIO_IGB_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "annotations": []
+                }
+            },
+            "sapHanaS2Tipologiche": {
+                "uri": "/sap/opu/odata/sap/ZSS4_CO_GEST_TIPOLOGICHE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "annotations": []
+                }
+            },
+            "ZSS4_CO_HELP_POSFIN_SRV": {
+                "uri": "/sap/opu/odata/sap/ZSS4_CO_HELP_POSFIN_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/ZSS4_CO_HELP_POSFIN_SRV/metadata.xml"
+                }
+            },
+            "sapHanaS2Autorizzazioni": {
+                "uri": "/sap/opu/odata/sap/ZSS4_COBI_LEGGI_AUTORIZZAZIONI_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadataAutorizzazioni.xml"
+                }
+            },
+            "sapHanaS2": {
+                "uri": "/sap/opu/odata/sap/ZSS4_COBI_ALV_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZKTIP_AMM_01_CDS": {
+                "uri": "/sap/opu/odata/sap/ZKTIP_AMM_01_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "version": "1.40.12"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "zsap.com.r3.cobi.s4.ecobilancioigb.view.App",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.collaboration": {},
+                "sap.m": {},
+                "sap.ui.comp": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.ushell": {},
+                "sap.uxap": {},
+                "zsap.com.r3.cobi.s4.custposfin.z_s4_zposfinlink": {},
+                "zsap.com.r3.cobi.s4.custposfin.z_s4_zposfin": {},
+                "z_s4_coniauth.coniauth": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "zsap.com.r3.cobi.s4.ecobilancioigb.i18n.i18n"
+                }
+            },
+            "sapHanaS2": {
+                "dataSource": "sapHanaS2",
+                "preload": true,
+                "settings": {}
+            },
+            "sapHanaS2Match": {
+                "dataSource": "sapHanaS2Match"
+            },
+            "sapHanaS2Ecobilancio": {
+                "dataSource": "sapHanaS2Ecobilancio"
+            },
+            "sapHanaS2EcobilancioIGB": {
+                "dataSource": "sapHanaS2EcobilancioIGB"
+            },
+            "sapHanaS2Tipologiche": {
+                "dataSource": "sapHanaS2Tipologiche",
+                "preload": true,
+                "settings": {}
+            },
+            "sapHanaS2Autorizzazioni": {
+                "dataSource": "sapHanaS2Autorizzazioni"
+            },
+            "ZKTIP_AMM_01_CDS": {
+                "dataSource": "ZKTIP_AMM_01_CDS"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "zsap.com.r3.cobi.s4.ecobilancioigb.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "transition": "slide",
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "Sottostrumento",
+                    "target": "Sottostrumento"
+                },
+                {
+                    "pattern": "Home/{Fikrs}/{CodiceStrumento}/{CodiceStrumentoOri}/{CodiceSottostrumento}/{Datbis}",
+                    "name": "Home",
+                    "target": "Home"
+                }
+            ],
+            "targets": {
+                "Home": {
+                    "viewId": "Home",
+                    "viewName": "Home"
+                },
+                "Sottostrumento": {
+                    "viewId": "Sottostrumento",
+                    "viewName": "Sottostrumento"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/z_s4_ecobiligb",
+        "_version": "1.1.0"
+    }
 }
