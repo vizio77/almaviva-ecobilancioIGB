@@ -7,9 +7,11 @@ sap.ui.define([
 	"zsap/com/r3/cobi/s4/ecobilancioigb/util/formatter",
 	"sap/ui/model/FilterOperator",
 	'sap/ui/export/Spreadsheet',
+	'sap/ui/export/library',
 
-], function (Controller, MessageBox, Filter, JSONModel, models, formatter, FilterOperator, SpreadSheet) {
+], function (Controller, MessageBox, Filter, JSONModel, models, formatter, FilterOperator, SpreadSheet, exportLibrary) {
 	"use strict";
+	var EdmType = exportLibrary.EdmType;
 	return Controller.extend("zsap.com.r3.cobi.s4.ecobilancioigb.controller.BaseController", {
 		
 		models: models,
@@ -381,6 +383,13 @@ sap.ui.define([
 				if (obj.CodiceAmmin) {
 					obj.DescrAmmin = formatter.formatterDescrAmmin(oAmminModel, obj.CodiceAmmin);
 				}
+				for (let i = 1; i <= 16; i++) {
+					const livello = "livello" + i.toString();
+					obj[livello]
+					if (obj[livello]) {
+						obj[livello] = parseFloat(obj[livello]);
+					}					
+				}
 			});
 			return aData;
 		},
@@ -437,22 +446,22 @@ sap.ui.define([
 				aCols.push(this._addColsExcelBase("thSpeseDirTra", "spese_dir", 'string'));
 				aCols.push(this._addColsExcelBase("thEsito", "esito_eco", 'string'));
 				aCols.push(this._addColsExcelBase("thEsitoPerc", "esito_eco_perc", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc1", "livello1", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc2", "livello2", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc3", "livello3", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc4", "livello4", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc5", "livello5", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc6", "livello6", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc7", "livello7", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc8", "livello8", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc9", "livello9", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc10", "livello10", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc11", "livello11", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc12", "livello12", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc13", "livello13", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc14", "livello14", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc15", "livello15", 'string'));
-				aCols.push(this._addColsExcelBase("thDescrCc16", "livello16", 'string'));
+				aCols.push(this._addColsExcelBase("thDescrCc1", "livello1", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc2", "livello2", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc3", "livello3", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc4", "livello4", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc5", "livello5", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc6", "livello6", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc7", "livello7", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc8", "livello8", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc9", "livello9", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc10", "livello10", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc11", "livello11", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc12", "livello12", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc13", "livello13", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc14", "livello14", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc15", "livello15", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc16", "livello16", EdmType.Number, 2));
 				aCols.push(this._addColsExcelBase("thNota", "Nota", 'string'));
 			} else if (sMod === "AnalisiClassificatoria") {
 				let sCdr = this.recuperaTestoI18n("thCdr") + " ";
@@ -519,12 +528,23 @@ sap.ui.define([
 
 			return aCols;
 		},
-		_addColsExcelBase: function (nameLabel, field, type) {
-			return {
+		_addColsExcelBase: function (nameLabel, field, type, scale) {
+			let column = {
 				label: this.recuperaTestoI18n(nameLabel),
 				property: [field],
 				type: type
 			};
+
+			if(scale) column.scale = scale
+			
+			return column;
+
+			aCols.push({
+				label: 'Decimal (scale=2)',
+				type: EdmType.Number,
+				property: 'SampleDecimal',
+				scale: 2
+			});
 		},
 		// robe copiate da gestposfin per matchcode di posfin
 
