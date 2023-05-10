@@ -445,7 +445,7 @@ sap.ui.define([
 				// aCols.push(this._addColsExcelBase("thCapAggr", "capi_aggr", 'string'));
 				aCols.push(this._addColsExcelBase("thSpeseDirTra", "spese_dir", 'string'));
 				aCols.push(this._addColsExcelBase("thEsito", "esito_eco", 'string'));
-				aCols.push(this._addColsExcelBase("thEsitoPerc", "esito_eco_perc", 'string'));
+				aCols.push(this._addColsExcelBase("thEsitoPerc", "esito_eco_perc", EdmType.Number, 2));
 				aCols.push(this._addColsExcelBase("thDescrCc1", "livello1", EdmType.Number, 2));
 				aCols.push(this._addColsExcelBase("thDescrCc2", "livello2", EdmType.Number, 2));
 				aCols.push(this._addColsExcelBase("thDescrCc3", "livello3", EdmType.Number, 2));
