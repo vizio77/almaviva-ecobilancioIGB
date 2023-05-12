@@ -78,6 +78,8 @@ sap.ui.define(
 					this.getView().setModel(new JSONModel(this.models.getModelEsitoTable()),"modelEsitoTable");
 					this.getView().setModel(new JSONModel(this.models.getModelAnnoConfronto()),"modelAnnoConfronto");
 					this.getView().setModel(new JSONModel(this.models.getModelSpeseInterne()),"modelSpeseInt");
+					this.getView().setModel(new JSONModel(this.models.getModelSpeseInterneFilter()),"modelSpeseIntFilter");
+					this.getView().setModel(new JSONModel(this.models.getModelSpeseInterneRows()),"modelSpeseIntRows");
 					this.getView().setModel(new JSONModel(this.models.getModelSpeseDirTrasf()),"modelSpeseDirTrasf");
 					this.getOwnerComponent().setModel(new JSONModel(this.models.getModelPosFin()),"modelPosFin");
 					this.getView().setModel(new JSONModel(this.models.getModelHomePosFin()),"modelHomePosFin");

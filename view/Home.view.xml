@@ -127,15 +127,15 @@
 									<Select
 									    id="idSpeseInterne"
 										items="{
-											path: 'modelSpeseInt>/Spese',
+											path: 'modelSpeseIntFilter>/Spese',
 											templateShareable: 'false'
 										}"
 										change=""
 									>
 										<items>
 											<core:Item
-												key="{modelSpeseInt>id}"
-												text="{modelSpeseInt>name}"
+												key="{modelSpeseIntFilter>id}"
+												text="{modelSpeseIntFilter>name}"
 											/>
 										</items>
 									</Select>
@@ -832,21 +832,18 @@
 											<!-- spese interne -->
 											<Select
 												enabled="{modelAnalisi>ENABLED}"
-												forceSelection="false"
+												
 												items="{
-													path: 'modelSpeseInt>/Spese',
-													templateShareable: 'false',
-													filters : [
-														{ path : 'id', operator : 'NE', value1 : ''}
-													]
+													path: 'modelSpeseIntRows>/Spese',
+													templateShareable: 'false'
 												}"
 												change="onChangeSpeseInt($event, 'analisi')"
 												selectedKey="{modelAnalisi>Speseint}"
 											>
 												<items>
 													<core:Item
-														key="{modelSpeseInt>id}"
-														text="{modelSpeseInt>name}"
+														key="{modelSpeseIntRows>id}"
+														text="{modelSpeseIntRows>name}"
 													/>
 												</items>
 											</Select>
@@ -1541,21 +1538,18 @@
 												}"/>
 											<Select
 												enabled="{modelEcobilancio>ENABLED}"
-												forceSelection="false"
+												
 												items="{
-													path: 'modelSpeseInt>/Spese',
-													templateShareable: 'false',
-													filters : [
-														{ path : 'id', operator : 'NE', value1 : ''}
-													]
+													path: 'modelSpeseIntRows>/Spese',
+													templateShareable: 'false'													
 												}"
 												change="onChangeSpeseInt($event, 'ecobilancio')"
 												selectedKey="{modelEcobilancio>SpeseInt}"
 											>
 												<items>
 													<core:Item
-														key="{modelSpeseInt>id}"
-														text="{modelSpeseInt>name}"
+														key="{modelSpeseIntRows>id}"
+														text="{modelSpeseIntRows>name}"
 													/>
 												</items>
 											</Select>

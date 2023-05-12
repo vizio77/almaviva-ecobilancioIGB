@@ -93,8 +93,24 @@ sap.ui.define([
 				}
 			];
 		},
-
 		getModelSpeseInterne: function(){
+			return {"Spese":[
+				{
+					"id":"",
+					"name":""
+				},
+				{
+					"id":"IU",
+					"name":"IU"
+				},
+				{
+					"id":"IP",
+					"name":"IP"
+				}
+			]}
+		},
+
+		getModelSpeseInterneFilter: function(){
 			return {"Spese":[
 				{
 					"id":"",
@@ -111,6 +127,23 @@ sap.ui.define([
 				{
 					"id":"NO",
 					"name":"No Spese Int."
+				}
+			]}
+		},
+
+		getModelSpeseInterneRows: function(){
+			return {"Spese":[
+				{
+					"id":"",
+					"name":"No Spese Int."
+				},
+				{
+					"id":"IU",
+					"name":"IU"
+				},
+				{
+					"id":"IP",
+					"name":"IP"
 				}
 			]}
 		},
