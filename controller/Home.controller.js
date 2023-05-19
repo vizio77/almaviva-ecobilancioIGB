@@ -52,6 +52,9 @@ sap.ui.define(
 						DenCap 		: false,
 						DenPg 		: false
 					}), "criteriModel");
+					/* this.getView().setModel(new JSONModel({
+						sottostrumentoVlv	: true						
+					}), "visibilityModel"); */
 
 					this.getView().setModel(new JSONModel({
 						enabled: false
@@ -370,6 +373,10 @@ sap.ui.define(
 							this.getView().byId("tableEcobilancio").setVisible(false);
 							break;
 						case "keyEcobilancio":
+							this.getView().byId("tableAnalisi").setVisible(false);
+							this.getView().byId("tableEcobilancio").setVisible(true);
+							break;
+						case "proposta":
 							this.getView().byId("tableAnalisi").setVisible(false);
 							this.getView().byId("tableEcobilancio").setVisible(true);
 							break;

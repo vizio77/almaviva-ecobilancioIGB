@@ -271,8 +271,8 @@
 							</fb:FilterGroupItem>
 						</fb:filterGroupItems>
 					</fb:Filterbar>
-					<Text text="{i18n>titleCriteriConf}" class="titleLabel" />
-					<VBox>
+					<Text visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '03' }" text="{i18n>titleCriteriConf}" class="titleLabel" />
+					<VBox visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '03' }">
 						<HBox>
 							<items>
 								<Label labelFor="filtroAndOr" text="Logica condizione:" class="sapUiTinyMarginTop"/>
@@ -335,15 +335,8 @@
 						text="{i18n>tabAnalisi}"
 						icon="sap-icon://document"
 						visible="{= ${criteriModel>/Cdr} || ${criteriModel>/Missione} ||  ${criteriModel>/Programma} || ${criteriModel>/Azione} || ${criteriModel>/DenCap} || ${criteriModel>/DenPg}}"
-					/>
-					<IconTabFilter
-						key="keyEcobilancio"
-						text="{i18n>tabEcobilancio}"
-						icon="sap-icon://document"
-						visible="{= !${criteriModel>/Cdr} &amp;&amp; !${criteriModel>/Missione} &amp;&amp;  !${criteriModel>/Programma} &amp;&amp; !${criteriModel>/Azione} &amp;&amp; !${criteriModel>/DenCap} &amp;&amp; !${criteriModel>/DenPg}}"
-					/>
-				</items>
-				<content>
+					>
+
 					<HBox
 						id="boxButtons"
 						justifyContent="End"
@@ -913,6 +906,54 @@
 							</Table>
 						</content>
 					</ScrollContainer>
+				
+					</IconTabFilter>
+
+					<IconTabFilter
+						key="keyEcobilancio"
+						text="{i18n>tabEcobilancio}"
+						icon="sap-icon://document"
+						visible="{= !${criteriModel>/Cdr} &amp;&amp; !${criteriModel>/Missione} &amp;&amp;  !${criteriModel>/Programma} &amp;&amp; !${criteriModel>/Azione} &amp;&amp; !${criteriModel>/DenCap} &amp;&amp; !${criteriModel>/DenPg}}"
+					>
+					<HBox
+						
+						justifyContent="End"
+					>
+						<Button
+							
+							text="{i18n>buttonListaRidotta}"
+							press="onPressListaRidotta"
+							type="Emphasized"
+							visible="{= ${modelTableExpansion>/isExpanded} &amp;&amp; !${criteriModel>/Cdr} &amp;&amp; !${criteriModel>/Missione} &amp;&amp;  !${criteriModel>/Programma} &amp;&amp; !${criteriModel>/Azione} &amp;&amp; !${criteriModel>/DenCap} &amp;&amp; !${criteriModel>/DenPg}}"
+							enabled="{listaButtonEnabled>/enabled}"
+							icon="sap-icon://zoom-out"
+							class="marginRight"
+						/>
+						<Button
+							
+							text="{i18n>buttonListaEstesa}"
+							press="onPressListaEstesa"
+							type="Emphasized"
+							visible="{= ${modelTableExpansion>/isCompressed} &amp;&amp; !${criteriModel>/Cdr} &amp;&amp; !${criteriModel>/Missione} &amp;&amp;  !${criteriModel>/Programma} &amp;&amp; !${criteriModel>/Azione} &amp;&amp; !${criteriModel>/DenCap} &amp;&amp; !${criteriModel>/DenPg}}"
+							enabled="{listaButtonEnabled>/enabled}"
+							icon="sap-icon://zoom-in"
+							class="marginRight"
+						/>
+						<!-- <Button
+							text="{i18n>buttonSalva}"
+							id="idButtonSalva"
+							type="Emphasized"
+							press="onSalva"
+							class="marginRight"
+						/> -->
+						<Button
+							text="{i18n>buttonExport}"
+							type="Emphasized"
+							icon="sap-icon://excel-attachment"
+							press="onPressExport"
+						/>
+					</HBox>
+
 					<ScrollContainer>
 						<content>
 							<Table
@@ -1616,7 +1657,18 @@
 							</Table>
 						</content>
 					</ScrollContainer>
-				</content>
+
+					</IconTabFilter>
+					<IconTabFilter 
+						key="proposta"
+						text="Proposta"
+						icon="sap-icon://document"
+						visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '52' }"
+					>
+					</IconTabFilter>
+				</items>
+				<!-- <content>
+				</content> -->
 			</IconTabBar>
 		</f:content>
 		<f:footer>
