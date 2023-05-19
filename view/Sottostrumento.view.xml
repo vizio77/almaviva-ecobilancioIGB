@@ -76,8 +76,8 @@
                             </f:SimpleForm>
                             <OverflowToolbar id="ddj" design="Transparent" >
                                 <ToolbarSpacer />
-                                <Button icon="sap-icon://search" text="{i18n>Avvio}" type="Emphasized" press="onNavigate"/>
                                 <Button icon="sap-icon://reset" text="Resetta"  type="Emphasized" press="onResetSStr"/>
+                                <Button icon="sap-icon://search" text="{i18n>Avvio}" type="Emphasized" press="onNavigate"/>
                             </OverflowToolbar>
                         </VBox>
                     </content>
