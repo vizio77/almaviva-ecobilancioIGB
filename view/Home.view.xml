@@ -1663,8 +1663,8 @@
 						key="proposta"
 						text="Proposta"
 						icon="sap-icon://document"
-						visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '52' }"
-					>
+						visible="false"
+					><!-- visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '52' }" -->
 					</IconTabFilter>
 				</items>
 				<!-- <content>
