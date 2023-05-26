@@ -407,7 +407,7 @@ sap.ui.define([
 				},
 				dataSource: this._formatDataForExcell(aDataCopy),
 				worker: true,
-				filename: nameFile
+				fileName: nameFile
 			}
 			new SpreadSheet(oSetting).build();
 
