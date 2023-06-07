@@ -74,6 +74,14 @@
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
                 }
+            },
+            "bilgenIgb": {
+                "uri": "/sap/opu/odata/sap/ZSS4_COBI_BILANCIO_GENERE_IGB_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
             }
         },
         "description": "{{appDescription}}",
@@ -157,6 +165,9 @@
             },
             "ZKTIP_AMM_01_CDS": {
                 "dataSource": "ZKTIP_AMM_01_CDS"
+            },
+            "bilgenIgb": {
+                "dataSource": "bilgenIgb"
             }
         },
         "resources": {

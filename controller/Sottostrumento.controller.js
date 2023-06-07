@@ -463,13 +463,21 @@ sap.ui.define([
                 this.oDialogHVSottoStrumento = null
                 this._oDialog = null
             },
-            onNavigate: function () {
+            onNavigate: async function () {
                 let modelHome = this.getView().getModel("modelHome")
                 let oSottostrumento = modelHome.getProperty("/infoSottoStrumento")
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 if(!oSottostrumento)
                     return
                 if(oSottostrumento.StatoSstr === '1') {
+                    //lt controllo se nella Tabella WF ci sono stati a 01 o a 02 PLBR 
+					if(oSottostrumento.TipoSstr === '52'){
+						let {checkWf,sMessage} = await this.checkAmminWf();
+						if(!checkWf){
+							MessageBox.warning(sMessage)
+							return;
+						} 
+					}
                     if(oSottostrumento.TipoEsposizione === "0" || oSottostrumento.TipoEsposizione === "2") {
                         oRouter.navTo("Home",{
                             Fikrs: oSottostrumento.Fikrs,
@@ -485,6 +493,20 @@ sap.ui.define([
                     } else {
                         MessageBox.warning("Non puoi operare con Sottostrumento chiuso")
                     }
+            },
+            checkAmminWf: async function(){
+                let checkWf = false,
+                sMessage =  "Operazione non consentita. Il workflow approvativo UCB non è ancora terminato";
+                let aFilter = [new Filter('Semobj', sap.ui.model.FilterOperator.EQ, 'Z_S4_ECOBIL'),
+                                new Filter('IterEcob', sap.ui.model.FilterOperator.NE, '03') ];
+                try {						
+                    var aResult = await this._readFromDb("7", "/CheckAmminWfSet", aFilter, [], "", "");
+                    if(aResult.length === 0) checkWf = true;
+                } catch (error) {
+                    sMessage = 'Errore nel controllo Workflow Approvativo APS/ECOBIL/BILGEN'
+                    console.log(`${sMessage}:`, error);						
+                }
+                return {checkWf, sMessage};
             },
             onFormatTipoEsposizione:function (sTipoEsposizione) {
                    const modelHome = this.getView().getModel("modelHome")

@@ -90,21 +90,9 @@
 								label="{i18n>filtroPosfin}"
 								visibleInFilterBar="true"
 							>
-								<fb:control>
-									<!-- <zcontrol:InputPosizioneFinanziaria
-										id="idPosFin"
-										fase="{modelFoto>/FASE}"
-										reale="{modelFoto>/REALE_RIF}"
-										anno="{modelFoto>/ANNO}"
-										spesa="X"
-										maxSuggestionWidth="60%"
-										versione="D"
-										change="onChangeT($event, 'posFin')"
-										liveChange="onSelectPosFin"
-									/> -->
+								<fb:control>									
 									<zcontrol:InputPosizioneFinanziaria id="idPosFin" fase="DLB" reale="R" anno="2024" fikrs="S001" spesa="X" maxSuggestionWidth="60%"
 										MODEL_FILTER_NAME="modelAdattaFiltri" versione="D"/>
-									<!-- <Input id="idPosFin" value="{modelPosFin>/posFinHelp/posFin/Fipex}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onPosFin"/> -->
 								</fb:control>
 							</fb:FilterGroupItem>
 							<fb:FilterGroupItem

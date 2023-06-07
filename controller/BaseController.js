@@ -203,6 +203,8 @@ sap.ui.define([
 					return this.getOwnerComponent().getModel("sapHanaS2EcobilancioIGB");
 				case "6":
 					return this.getOwnerComponent().getModel("ZKTIP_AMM_01_CDS");
+				case "7":
+					return this.getOwnerComponent().getModel("bilgenIgb");
 
 			}
 		},
