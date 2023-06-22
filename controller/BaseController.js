@@ -396,7 +396,7 @@ sap.ui.define([
 			return aData;
 		},
 
-		downloadExcel: function (nameFile, nameModel, sMod) {
+		downloadExcel: function (nameFile, nameModel, sMod, isProposta) {
 			var arrExcel = this.getView().getModel(nameModel).getData();
 			// copia dei dati, si rompe il binding
 			var aDataCopy = JSON.parse(JSON.stringify(arrExcel));
@@ -526,6 +526,25 @@ sap.ui.define([
 				aCols.push(this._addColsExcelBase("thDescrCc15", "Livello15", 'string'));
 				aCols.push(this._addColsExcelBase("thDescrCc16", "Livello16", 'string'));
 				aCols.push(this._addColsExcelBase("thNota", "Nota", 'string'));
+			}else if(sMod === "Proposta"){			
+				aCols.push(this._addColsExcelBase("thPosfin", "Fipex", 'string'));			
+				aCols.push(this._addColsExcelBase("thEsitoPerc", "EsitoEcoPerc", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc1", "Livello1", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc2", "Livello2", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc3", "Livello3", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc4", "Livello4", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc5", "Livello5", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc6", "Livello6", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc7", "Livello7", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc8", "Livello8", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc9", "Livello9", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc10", "Livello10", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc11", "Livello11", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc12", "Livello12", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc13", "Livello13", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc14", "Livello14", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc15", "Livello15", EdmType.Number, 2));
+				aCols.push(this._addColsExcelBase("thDescrCc16", "Livello16", EdmType.Number, 2));
 			}
 
 			return aCols;

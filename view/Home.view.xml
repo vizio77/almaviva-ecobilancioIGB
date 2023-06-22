@@ -48,7 +48,7 @@
 							<Link text="{modelPosFin>/Sottostrumento}" press="onExpandPopOverSottostrumento" class="sapUiTinyMarginBeginEnd"/>
 						</items>
 					</FlexBox>  -->
-					<fb:Filterbar
+					<fb:FilterBar
 						id="idBar"
 						showClearOnFB="true"
 						clear="onClear"
@@ -90,7 +90,8 @@
 								label="{i18n>filtroPosfin}"
 								visibleInFilterBar="true"
 							>
-								<fb:control>									
+								<fb:control>
+									
 									<zcontrol:InputPosizioneFinanziaria id="idPosFin" fase="DLB" reale="R" anno="2024" fikrs="S001" spesa="X" maxSuggestionWidth="60%"
 										MODEL_FILTER_NAME="modelAdattaFiltri" versione="D"/>
 								</fb:control>
@@ -258,7 +259,7 @@
 								</fb:control>
 							</fb:FilterGroupItem>
 						</fb:filterGroupItems>
-					</fb:Filterbar>
+					</fb:FilterBar>
 					<Text visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '03' }" text="{i18n>titleCriteriConf}" class="titleLabel" />
 					<VBox visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '03' }">
 						<HBox>
@@ -1651,8 +1652,339 @@
 						key="proposta"
 						text="Proposta"
 						icon="sap-icon://document"
-						visible="false"
+						visible="true"
 					><!-- visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '52' }" -->
+
+
+					<HBox
+						
+						justifyContent="End"
+					>
+						<Button
+							text="{i18n>buttonExport}"
+							type="Emphasized"
+							icon="sap-icon://excel-attachment"
+							press="onPressExport($event, true)"
+						/>
+					</HBox>
+					<ScrollContainer>
+						<content>
+							<Table
+								
+								growing="true"
+								sticky="ColumnHeaders"
+								mode="MultiSelect"
+								growingThreshold="10"
+								
+								visible="true"								
+								items="{path: 'modelTableProposta>/' }"
+								
+							>
+								<columns>
+									<!-- <Column width="8rem">
+										<Text text="{i18n>thAmmin}" class="boldCss"/>
+									</Column> -->
+									<Column width="14rem">
+										<Text text="{i18n>thPosfin}" class="boldCss"/>
+									</Column>
+									
+									<Column
+										width="5rem"
+									>
+										<Text text="{i18n>thEsitoPerc}" class="boldCss"/>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello1ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 1 - Protezione dell’aria e del clima"/>
+											<Text
+												text="{i18n>thCc1}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello2ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+											tooltip="Cepa 2 - Gestione delle acque reflue"/>
+											<Text
+												text="{i18n>thCc2}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello3ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 3 - Gestione dei rifiuti"/>
+											<Text
+												text="{i18n>thCc3}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello4ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 4 - Protezione e risanamento del suolo, delle acque del sottosuolo e delle acque di superficie"/>
+											<Text
+												text="{i18n>thCc4}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello5ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 5 - Abbattimento del rumore e delle vibrazioni (esclusa la protezione degli ambienti di lavoro)"/>
+											<Text
+												text="{i18n>thCc5}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello6ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 6 - Protezione della biodiversità e del paesaggio"/>
+											<Text
+												text="{i18n>thCc6}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello7ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 7 - Protezione dalle radiazioni (ad esclusione della protezione degli ambienti di lavoro e del rischio tecnologico e di incidente nucleare)"/>
+											<Text
+												text="{i18n>thCc7}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello8ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 8 - Ricerca e sviluppo"/>
+											<Text
+												text="{i18n>thCc8}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello9ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cepa 9 - Altre attività di protezione dell’ambiente"/>
+											<Text
+												text="{i18n>thCc9}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello10ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 10 - Uso e gestione delle acque interne"/>
+											<Text
+												text="{i18n>thCc10}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello11ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 11 - Uso e gestione delle foreste"/>
+												<Text
+												text="{i18n>thCc11}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello12ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 12 - Uso e gestione della flora e della fauna selvatiche"/>
+												<Text
+												text="{i18n>thCc12}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello13ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 13 - Uso e gestione delle materie prime energetiche non rinnovabili (combustibili fossili)"/>
+												<Text
+												text="{i18n>thCc13}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello14ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 14 - Uso e gestione delle materie prime non energetiche"/>
+												<Text
+												text="{i18n>thCc14}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello15ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 15 - Ricerca e sviluppo per l’uso e la gestione delle risorse naturali"/>
+												<Text
+												text="{i18n>thCc15}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									<Column
+										demandPopin="true"
+										width="5rem"
+										popinDisplay="Inline"
+										hAlign="Center"
+									>
+										<layout:VerticalLayout>
+											<Button id="livello16ab" width="auto" press="onPressInfoCol" type="Emphasized" iconFirst="true" icon="sap-icon://message-information"
+												tooltip="Cruma 16 - Altre attività di uso e gestione delle risorse naturali"/>
+												<Text
+												text="{i18n>thCc16}"
+												class="boldCss"
+											/>
+										</layout:VerticalLayout>
+									</Column>
+									
+								</columns>
+								<items>
+									<ColumnListItem vAlign="Inherit">
+										<cells>
+											<!-- <Text text="{modelTableProposta>CodiceAmmin}"/> -->
+											<zcontrollink:LinkPosizioneFinanziaria
+												
+												anno="2024"
+												fikrs="S001"
+												fase="DLB"
+												reale="R"
+												versione="D"
+												fipex="{
+													path: 'modelTableProposta>Fipex',
+													formatter: '.formatterPosFin'
+												}"
+												datbis="99991231"
+												text="{modelTableProposta>Fipex}"
+												semanticObject="ESAMINAMODIFICA"
+											/>
+											
+											<!-- perc esito -->
+											<Text text="{modelTableProposta>EsitoEcoPerc}"/>
+											<!-- qtext=uamodelTablePropostacepacruma -->
+											<Text text="{modelTableProposta>Livello1}"/>
+											<Text text="{modelTableProposta>Livello2}"/>
+											<Text text="{modelTableProposta>Livello3}"/>
+											<Text text="{modelTableProposta>Livello4}"/>
+											<Text text="{modelTableProposta>Livello5}"/>
+											<Text text="{modelTableProposta>Livello6}"/>
+											<Text text="{modelTableProposta>Livello7}"/>
+											<Text text="{modelTableProposta>Livello8}"/>
+											<Text text="{modelTableProposta>Livello9}"/>
+											<Text text="{modelTableProposta>Livello10}"/>
+											<Text text="{modelTableProposta>Livello11}"/>
+											<Text text="{modelTableProposta>Livello12}"/>
+											<Text text="{modelTableProposta>Livello13}"/>
+											<Text text="{modelTableProposta>Livello14}"/>
+											<Text text="{modelTableProposta>Livello15}"/>
+											<Text text="{modelTableProposta>Livello16}"/>
+											
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</ScrollContainer>
+
+
+
+
 					</IconTabFilter>
 				</items>
 				<!-- <content>

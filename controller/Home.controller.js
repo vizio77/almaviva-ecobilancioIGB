@@ -62,6 +62,7 @@ sap.ui.define(
 
 					this.getView().setModel(new JSONModel([]), "modelEcobilancio");
 					this.getView().setModel(new JSONModel([]), "modelAnalisi");
+					this.getView().setModel(new JSONModel([]), "modelTableProposta");
 
 					// this.getView().setModel(new JSONModel({
 					// 	Cdr			: true,
@@ -143,6 +144,7 @@ sap.ui.define(
 					// pulizia modello
 					this.getView().setModel(new JSONModel([]), "modelAnalisi");
 					this.getView().setModel(new JSONModel([]), "modelEcobilancio");
+					this.getView().setModel(new JSONModel([]), "modelTableProposta");
 
 					// attivo i checkbox criteri
 					// this.getView().setModel(new JSONModel({
@@ -440,10 +442,9 @@ sap.ui.define(
 
 						// valori dei filtri
 						if(this.byId("idPosFin")) var posfin = this.getView().byId("idPosFin").getValue();
-						/* var posfin = this.getView().byId("idPosFin").getValue();
 						if (posfin) {
 							aFilters.aFilters.push(new Filter("Fipex", sap.ui.model.FilterOperator.EQ, posfin));
-						} */
+						}
 						var sCapitolo = this.getView().byId("idCapitolo").getValue();
 						if (sCapitolo) {
 							aFilters.aFilters.push(new Filter("CodiceCapitolo", sap.ui.model.FilterOperator.EQ, sCapitolo));
@@ -517,6 +518,32 @@ sap.ui.define(
             			// aFilters.aFilters.push(new Filter("Reale", sap.ui.model.FilterOperator.EQ, "R"));
 						this.openBusyDialog();
 						var aResult = await this._readFromDb("5","/EcoBilIgb_Analisi_ClassSet",aFilters.aFilters,[]);
+
+						var aResult, aResultProposta
+						await Promise.all([
+							this._readFromDb(
+								'5',
+								'/EcoBilIgb_Analisi_ClassSet',
+								aFilters.aFilters,
+								[]
+							),
+							this._readFromDb(
+								'5',
+								'/EcoBilIgbStSet',
+								[],
+								[]
+							)
+						]).then(aResults =>{
+							aResult = aResults[0]
+							aResultProposta = aResults[1]
+						});
+						aResultProposta = this.creaStrutturaStorico(aResultProposta);
+
+						this.getView().setModel(
+							new JSONModel(aResultProposta),
+							'modelTableProposta'
+						);
+
 						this.closeBusyDialog();
 
 						// TOGLI IN DEPLOY
@@ -529,17 +556,7 @@ sap.ui.define(
 						this.getView().byId("idTabBar").setSelectedKey("keyAnalisi");
 						this.getView().getModel("modelAnalisi").refresh();
 
-						// if (aResult.length) {
-						// 	// disattivo i checkbox criteri
-						// 	this.getView().setModel(new JSONModel({
-						// 		Cdr			: false,
-						// 		Missione 	: false,
-						// 		Programma 	: false,
-						// 		Azione 		: false,
-						// 		DenCap 		: false,
-						// 		DenPg 		: false
-						// 	}), "criteriEnabledModel");
-						// }
+						
 					}
 
 					//LETTURA ECOBILANCIO
@@ -554,10 +571,9 @@ sap.ui.define(
 
 						// valori dei filtri
 						if(this.byId("idPosFin")) var posfin = this.getView().byId("idPosFin").getValue();
-						/* var posfin = this.getView().byId("idPosFin").getValue();
 						if (posfin) {
 							aFilters.aFilters.push(new Filter("fipex", sap.ui.model.FilterOperator.EQ, posfin));
-						} */
+						} 
 
 						var sCapitolo = this.getView().byId("idCapitolo").getValue();
 						if (sCapitolo) {
@@ -627,6 +643,31 @@ sap.ui.define(
 						
 						this.openBusyDialog();
 						var aResult = await this._readFromDb("5","/ZES_AVVIOSet",aFilters.aFilters,[]);
+						var aResult, aResultProposta
+						await Promise.all([
+							this._readFromDb(
+								'5',
+								'/ZES_AVVIOSet',
+								aFilters.aFilters,
+								[]
+							),
+							this._readFromDb(
+								'5',
+								'/EcoBilIgbStSet',
+								[],
+								[]
+							)
+						]).then(aResults =>{
+							aResult = aResults[0]
+							aResultProposta = aResults[1]
+						});
+
+						aResultProposta = this.creaStrutturaStorico(aResultProposta);
+
+						this.getView().setModel(
+							new JSONModel(aResultProposta),
+							'modelTableProposta'
+						);
 						this.closeBusyDialog();
 
 						this._setCustomFields(aResult, "ecobilancio");
@@ -654,6 +695,44 @@ sap.ui.define(
 						// 	}), "criteriEnabledModel");
 						// }
 					}
+				},
+				creaStrutturaStorico:function(aResultProposta){
+					let fipexSingoli = [],
+					struttura = [];
+					//aResultProposta = fipexSingoli;
+					aResultProposta.forEach(el => {
+						el.Fipex;
+						var check = fipexSingoli.filter(item => item.Fipex === el.Fipex);
+						if(check.length === 0){
+							fipexSingoli.push(el);
+						}
+					});
+					//ciclo e popolo i risulati
+					for (let i = 0; i < fipexSingoli.length; i++) {
+						const row = fipexSingoli[i];
+						var z = 1
+						//ciclo i risultati e metto la proprietà 
+
+						while (z < 17) {							
+							row[`Livello${z}`] = "0.00";
+							z++;
+						}				
+						var res = jQuery.grep(aResultProposta, function( n, i ) {
+								return n.Fipex === row.Fipex;
+						});
+
+						row.EsitoEcoPerc = 0;
+						res.forEach(silngle => {
+							let livInt = parseInt(silngle.CodiceEcobilv1);
+							row[`Livello${livInt}`] = silngle.PercAssocEcobil;	
+							row.EsitoEcoPerc = row.EsitoEcoPerc + parseInt(silngle.PercAssocEcobil);
+						});	
+						
+						struttura.push(row);				
+					
+					}
+
+					return struttura;
 				},
 
 				_setCustomFields: function (aData, sType) {
@@ -2681,7 +2760,7 @@ sap.ui.define(
 					}
 				},
 
-				onPressExport: function () {
+				onPressExport: function (oEvent, isProposta) {
 					let oTableBilancio = this.getView().byId("tableEcobilancio");
 					let sModel;
 					let sFileName;
@@ -2695,6 +2774,12 @@ sap.ui.define(
 						sModel = "modelAnalisi";
 						sFileName = "AnalisiClassificatoria"
 						sTableExport = "AnalisiClassificatoria";
+					}
+
+					if(isProposta){
+						sModel = "modelTableProposta";
+						sFileName = "Storico_Proposta_Ecobilancio"
+						sTableExport = "Proposta";
 					}
 
 
