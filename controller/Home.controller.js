@@ -517,7 +517,7 @@ sap.ui.define(
 						// aFilters.aFilters.push(new Filter("Anno", sap.ui.model.FilterOperator.EQ, "2024"));
             			// aFilters.aFilters.push(new Filter("Reale", sap.ui.model.FilterOperator.EQ, "R"));
 						this.openBusyDialog();
-						var aResult = await this._readFromDb("5","/EcoBilIgb_Analisi_ClassSet",aFilters.aFilters,[]);
+						//var aResult = await this._readFromDb("5","/EcoBilIgb_Analisi_ClassSet",aFilters.aFilters,[]);
 
 						var aResult, aResultProposta
 						await Promise.all([
@@ -642,7 +642,7 @@ sap.ui.define(
 						}
 						
 						this.openBusyDialog();
-						var aResult = await this._readFromDb("5","/ZES_AVVIOSet",aFilters.aFilters,[]);
+						//var aResult = await this._readFromDb("5","/ZES_AVVIOSet",aFilters.aFilters,[]);
 						var aResult, aResultProposta
 						await Promise.all([
 							this._readFromDb(

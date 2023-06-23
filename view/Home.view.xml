@@ -770,11 +770,11 @@
 											<Text text="{modelAnalisi>CodiceAmmin}"/>
 											<zcontrollink:LinkPosizioneFinanziaria
 												id="linkPosFin"
-												anno="2024"
-												fikrs="S001"
-												fase="DLB"
-												reale="R"
-												versione="D"
+												anno="{modelAnalisi>Anno}"
+												fikrs="{modelAnalisi>Fikrs}"
+												fase="{modelAnalisi>Fase}"
+												reale="{modelAnalisi>Reale}"
+												versione="{modelAnalisi>Versione}"
 												fipex="{
 													path: 'modelAnalisi>Fipex',
 													formatter: '.formatterPosFin'
@@ -1529,11 +1529,11 @@
 										<Text text="{modelEcobilancio>codice_ammin}"/>
 											<zcontrollink:LinkPosizioneFinanziaria
 												id="linkPosFin2"
-												anno="2024"
-												fikrs="S001"
-												fase="DLB"
-												reale="R"
-												versione="D"
+												anno="{modelEcobilancio>Anno}"
+												fikrs="{modelEcobilancio>fikrs}"
+												fase="{modelEcobilancio>fase}"
+												reale="{modelEcobilancio>Reale}"
+												versione="{modelEcobilancio>Versione}"
 												fipex="{
 													path: 'modelEcobilancio>fipex',
 													formatter: '.formatterPosFin'
@@ -1941,11 +1941,11 @@
 											<!-- <Text text="{modelTableProposta>CodiceAmmin}"/> -->
 											<zcontrollink:LinkPosizioneFinanziaria
 												
-												anno="2024"
-												fikrs="S001"
-												fase="DLB"
-												reale="R"
-												versione="D"
+												anno="{modelTableProposta>Anno}"
+												fikrs="{modelTableProposta>Fikrs}"
+												fase="{modelTableProposta>Fase}"
+												reale="{modelTableProposta>Reale}"
+												versione="{modelTableProposta>Versione}"
 												fipex="{
 													path: 'modelTableProposta>Fipex',
 													formatter: '.formatterPosFin'
