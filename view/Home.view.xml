@@ -1652,7 +1652,7 @@
 						key="proposta"
 						text="Proposta"
 						icon="sap-icon://document"
-						visible="true"
+						visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '52' }"
 					><!-- visible="{= ${modelPosFin>/infoSottoStrumento/TipoSstr} === '52' }" -->
 
 
